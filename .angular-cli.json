@@ -19,9 +19,18 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        "styles.css",
+        "main.css",
+        "other-styles.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "scripts/here.js",
+        "scripts/google-map-sample.js",
+        "scripts/jnaj-connect.js",
+        "scripts/leaders.js",
+        "scripts/open-pic-modal.js",
+        "scripts/toggle-sidebar.js"
+        ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
