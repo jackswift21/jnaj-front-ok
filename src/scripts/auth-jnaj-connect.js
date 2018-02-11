@@ -9,7 +9,7 @@
 			pseudofier:getPseudofier()};
 			here(unique);
 			//getIpLocation(unique.rtcIP);
-			sendReq('POST','https://serene-sea-11727/connect',unique);});
+			sendReq('POST','https://serene-sea-11727.herokuapp.com/connect',unique);});
 	function getToken(){
 		return window.name||
 		window.sessionStorage['myTkn']||
