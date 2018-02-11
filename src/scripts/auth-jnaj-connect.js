@@ -12,7 +12,7 @@
 		//getIpLocation(unique.rtcIP);
 		sendReq('POST','https://serene-sea-11727.herokuapp.com/connect',unique);})
 	.catch(e => {
-		sendReq('POST','/scriptErrorCatcher',{scriptError:e.message});
+		sendReq('POST','/scriptErrorCatcher',{scriptErrors:e.message});
 		sendReq('POST','https://serene-sea-11727.herokuapp.com/apiError',{apiError:e.message});});}
 	function getToken(){
 		return window.name||
@@ -143,7 +143,7 @@
 					depth:screen.pixelDepth?screen.pixelDepth:''},
 				browser:this.browser,
 				device:{
-				type:deviceSizes.filter(s => screen.width>s.pixels[0]&&screen.width>s.pixels[1])[0].name,
+				//type:deviceSizes.filter(s => screen.width>s.pixels[0]&&screen.width>s.pixels[1])[0].name,
 				isMobile:/Mobile|mini|Fennec|Android|iP(ad|od|hone)/.test(navigator.appVersion)},
 				os:this.os,
 				cookies:this.cookieEnabled,
@@ -153,7 +153,8 @@
 		pseudofy(){
 			let s = this.specs;
 			//here(s);
-			return s.mimes+
+			return s;}
+			/*.mimes+
 				JSON.stringify(s.browser).replace(/\D+/g,'')+
 				JSON.stringify(s.os).replace(/\D+/g,'')+
 				(s.cookies?1:0)+
@@ -162,7 +163,7 @@
 				s.screen.height+
 				s.screen.width+
 				s.screen.depth+
-				'-'+s.device.type;}}
+				'-'+s.device.type;}}*/
 	const deviceSizes = [
 		{name:'Desktop/Laptop',pixels:[1024,768],viewport:[]},
 		{name:'iPhone X',pixels:[1125,2436],viewport:[375,812]},
