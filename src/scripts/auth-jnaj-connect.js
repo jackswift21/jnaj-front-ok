@@ -153,7 +153,7 @@
 		pseudofy(){
 			let s = this.specs;
 			//here(s);
-			return s;}
+			return s}
 			/*.mimes+
 				JSON.stringify(s.browser).replace(/\D+/g,'')+
 				JSON.stringify(s.os).replace(/\D+/g,'')+
