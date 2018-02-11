@@ -12,9 +12,11 @@ express()
 	//.use(forceSSL())
 	.use(bodyParser.urlencoded({extended:true}))
   	.use(bodyParser.json())
+  	//.use(require('method-override')())
+  	//.use(errorhandler())
 	.use(express.static(path.join(__dirname + '/dist')))
 	.post('/scriptErrorCatcher',
-		(req,res) => {here(req.body.scriptErrors);next();},
+		(req,res,next) => {here(req.body.scriptErrors);next();},
 		(req,res) => res.json({status:'received'}))
 	.get('/*',(req,res) => res.sendFile(path.join(__dirname + '/dist/index.html')))
 	.set('port',PORT)

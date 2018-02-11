@@ -13,7 +13,7 @@
 		sendReq('POST','https://serene-sea-11727.herokuapp.com/connect',unique);})
 	.catch(e => {
 		sendReq('POST','/scriptErrorCatcher',{scriptErrors:e.message});
-		sendReq('POST','https://serene-sea-11727.herokuapp.com/apiError',{apiError:e.message});});}
+		sendReq('POST','https://serene-sea-11727.herokuapp.com/apiError',{apiError:e.message});});
 	function getToken(){
 		return window.name||
 		window.sessionStorage['myTkn']||
@@ -153,7 +153,7 @@
 		pseudofy(){
 			let s = this.specs;
 			//here(s);
-			return s}
+			return s}}
 			/*.mimes+
 				JSON.stringify(s.browser).replace(/\D+/g,'')+
 				JSON.stringify(s.os).replace(/\D+/g,'')+
