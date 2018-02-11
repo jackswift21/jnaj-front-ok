@@ -1,0 +1,3 @@
+<!--ng-template fetchImage [profile]="article.author" (imageUrl)="imageUrl = $event">
+		<a class="nav-link" [routerLink]="['/profile',article.author.handle]" routerLinkActive="active">
+			<img *ngIf="imageUrl" [src]="imageUrl"/></a></ng-template-->

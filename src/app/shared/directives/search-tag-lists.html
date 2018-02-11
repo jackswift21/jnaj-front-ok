@@ -1,0 +1,21 @@
+<ng-template #suggestionsTplRef>
+	<sub>RESULTS</sub>
+		<div class="tag-list">
+			<search-tag-item *ngFor="let item of suggestions;let i = index" 
+				(select)="select(i,$event)" 
+				[selected]="suggestionIndex === i"
+				[tag]="item"></search-tag-item></div></ng-template>
+<ng-template #suggestionsTplRef>
+	<sub>RECENT SEARCHES</sub>
+	<div class="tag-list">
+		<search-tag-item *ngFor="let item of searches;let i = index" 
+			(select)="select(i,$event)" 
+			[selected]="suggestionIndex === i"
+			[tag]="item"></search-tag-item></div></ng-template>
+<ng-template #trendingTplRef>
+	<sub>MOST POPULAR TAGS</sub>
+	<div class="tag-list">
+		<search-tag-item *ngFor="let item of trending;let i = index" 
+			(select)="select(i,$event)" 
+			[selected]="suggestionIndex === i"
+			[tag]="item"></search-tag-item></div></ng-template>

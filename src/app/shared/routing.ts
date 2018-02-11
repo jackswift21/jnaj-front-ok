@@ -1,0 +1,73 @@
+import {ModuleWithProviders} from '@angular/core';
+import {RouterModule,Routes} from '@angular/router';
+import {
+	/*HomeBanner,
+	ProfileBanner,
+	FormModal,
+	SearchForm,
+	SearchTagLists,
+	AuthForm,
+	ArticleMeta,
+	ArticlePreview,
+	MenuItemMeta,
+	MenuItem,
+	ReviewMeta,
+	ReviewItem,
+	ReviewForm,
+	VendorMeta,
+	VendorItem,
+	VendorForm,
+	TagItem,
+	SearchTagItem,
+	ItemList,
+	FavoriteButton,
+	FollowButton,
+	LinkButton,
+	FaveButton,
+	ErrorsList,
+	NavBar,
+	Pagination,
+	LoadingIndicator,*/} from './components';
+import {
+	ShowIfAuthedDirective,
+	EditingProfileDirective,
+	FetchImageDirective,
+	TypeAhead,
+	TypeAheadSuggestions,} from './directives';
+
+export const COMPONENTS = [
+	/*HomeBanner,
+	ProfileBanner,
+	FormModal,
+	SearchForm,
+	SearchTagLists,
+	AuthForm,
+  ArticleMeta,
+  ArticlePreview,
+  MenuItemMeta,
+  MenuItem,
+  ReviewMeta,
+  ReviewItem,
+  ReviewForm,
+  VendorMeta,
+  VendorItem,
+  VendorForm,
+  TagItem,
+  SearchTagItem,
+  ItemList,
+  FavoriteButton,
+  FollowButton,
+  LinkButton,
+  FaveButton,
+  ErrorsList,
+  NavBar,
+  LoadingIndicator,
+  Pagination*/];
+export const DIRECTIVES = [
+	ShowIfAuthedDirective,
+	EditingProfileDirective,
+	FetchImageDirective,
+	TypeAhead,
+	TypeAheadSuggestions];
+export const PIPES = [];
+export const ROUTING:ModuleWithProviders = RouterModule.forChild([]);

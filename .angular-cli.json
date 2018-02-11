@@ -24,12 +24,13 @@
         "other-styles.css"
       ],
       "scripts": [
+        "../node_modules/jquery/dist/jquery.min.js",
         "scripts/here.js",
-        "scripts/google-map-sample.js",
-        "scripts/jnaj-connect.js",
-        "scripts/leaders.js",
+        "scripts/auth-jnaj-connect.js",
         "scripts/open-pic-modal.js",
-        "scripts/toggle-sidebar.js"
+        "scripts/leaders.js",
+        "scripts/google-map-sample.js",
+        "scripts/markerclusterer.js"
         ],
       "environmentSource": "environments/environment.ts",
       "environments": {
