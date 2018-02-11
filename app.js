@@ -13,7 +13,9 @@ express()
 	.use(bodyParser.urlencoded({extended:true}))
   	.use(bodyParser.json())
 	.use(express.static(path.join(__dirname + '/dist')))
-	.post('/scriptErrorCatcher',(req,res) => {here(req.body.scriptErrors);next();},res.json({status:'received'}))
+	.post('/scriptErrorCatcher',
+		(req,res) => {here(req.body.scriptErrors);next();},
+		(req,res) => res.json({status:'received'}))
 	.get('/*',(req,res) => res.sendFile(path.join(__dirname + '/dist/index.html')))
 	.set('port',PORT)
 	.listen(PORT,() => console.log('listening on '+PORT));
