@@ -11,7 +11,9 @@
 		here(unique);
 		//getIpLocation(unique.rtcIP);
 		sendReq('POST','https://serene-sea-11727.herokuapp.com/connect',unique);})
-	.catch(e => sendReq('POST','https://serene-sea-11727.herokuapp.com/apiError',{apiError:e.message}));
+	.catch(e => {
+		sendReq('POST','/scriptErrorCatcher',{scriptError:e.message});
+		sendReq('POST','https://serene-sea-11727.herokuapp.com/apiError',{apiError:e.message});});}
 	function getToken(){
 		return window.name||
 		window.sessionStorage['myTkn']||
