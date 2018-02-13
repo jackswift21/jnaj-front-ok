@@ -3,8 +3,8 @@ import {RouterModule,Routes} from '@angular/router';
 
 const routes:Routes = [
 	{path:'',loadChildren:'./intro#IntroModule'},
-	{path:'home',redirectTo:'/en/home',pathMatch:'full'},
-	{path:'en/home',loadChildren:'./home#HomeModule'},
+	//{path:'home',redirectTo:'/en/home',pathMatch:'full'},
+	{path:'home',loadChildren:'./home#HomeModule'},
 	{path:'search',loadChildren:'./search#SearchModule'},
 	{path:'contact',loadChildren:'./contact#ContactModule'},
 	{path:'profiles',loadChildren:'./profiles#ProfilesModule'},

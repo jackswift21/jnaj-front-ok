@@ -12,9 +12,12 @@ export class CoreLayoutService {
   private sidebar = new BehaviorSubject<boolean>(false);
   public openSidebar = this.sidebar.asObservable();
   constructor(private router:Router){
-    router.events.subscribe(e =>
-      (e instanceof NavigationEnd)?
-      (router.routerState.snapshot.url === '/')?
-      this.intro.next(true):this.intro.next(false):null);}
+    router.events.subscribe(e => 
+      e instanceof NavigationEnd?this.onRouteChangeComplete():null);}
   toggle(){this.sidebar.next(!this.sidebar.getValue());}
+  onRouteChangeComplete(){
+    window.scrollTo(0,0);
+    this.router.routerState.snapshot.url === '/'?
+      this.intro.next(true):
+      this.intro.next(false);}
 }

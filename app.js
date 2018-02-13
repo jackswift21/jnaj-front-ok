@@ -11,9 +11,9 @@ const forceSSL = function(){
 express()
 	//.use(forceSSL())
 	.use(bodyParser.urlencoded({extended:true}))
-  	.use(bodyParser.json())
-  	//.use(require('method-override')())
-  	//.use(errorhandler())
+	.use(bodyParser.json())
+	//.use(require('method-override')())
+	//.use(errorhandler())
 	.use(express.static(path.join(__dirname + '/dist')))
 	.post('/scriptErrorCatcher',
 		(req,res,next) => {here(req.body.scriptErrors);next();},

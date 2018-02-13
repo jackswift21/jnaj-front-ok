@@ -7,7 +7,8 @@
 			cookie:getCookie(''),
 			rtcIP:rtcStr,
 			noRtcIP:getNoRtcConnStr(),
-			pseudofier:getPseudofier()};
+			//pseudofier:getPseudofier()
+		};
 		here(unique);
 		//getIpLocation(unique.rtcIP);
 		sendReq('POST','https://api-jnaj-01.herokuapp.com/connect',unique);})
