@@ -12,11 +12,11 @@ declare const here:any;
 
 export class SearchResults {
 	query;
-	results = {};
+	results = {profiles:[],samples:[],articles:[]};
 	constructor(private search:SearchService,private state:AppState){}
 	ngOnInit(){
 		this.search.query.subscribe(q => {this.query = q;here(this.query);});
-		this.state.results.profiles.subscribe(p => this.results['profiles'] = p.length);
-		this.state.results.samples.subscribe(s => this.results['samples'] = s.length);
-		this.state.results.articles.subscribe(a => this.results['articles'] = a.length);}
+		this.state.results.profiles.subscribe(p => this.results.profiles = p.length);
+		this.state.results.samples.subscribe(s => this.results.samples = s.length);
+		this.state.results.articles.subscribe(a => this.results.articles = a.length);}
 }

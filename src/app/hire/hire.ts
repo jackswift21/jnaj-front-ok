@@ -9,6 +9,9 @@ declare const here:any;
 })
 
 export class HireMe {
+  openMap(){}
+  openPhn(){}
+  openEmail(){}
 	hireJack(){
     let data = {};
     $("#contact").serializeArray().forEach(a => data[a.name] = a.value);

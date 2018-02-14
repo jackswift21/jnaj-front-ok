@@ -10,4 +10,8 @@ declare const here:any;
 
 export class ProfileForm {
 	isNew = true;
+	openUploadPic(){}
+	setExperience($event){}
+	getUserLocation(){}
+	submitProfile(){}
 }
