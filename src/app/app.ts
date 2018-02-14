@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {AppState} from './app.state';
 
 @Component({
   selector: 'jnaj-app',
@@ -7,8 +8,8 @@ import { Component } from '@angular/core';
 })
 export class App {
   title = 'app';
+  constructor(private appState:AppState){}
   //analyzethis;
-  //constructor(private user:UserService){this.analyzethis = new AnalyzeThis('ok')}
-  //ngOnInit(){this.user.populate();}
+  //this.analyzethis = new AnalyzeThis('ok')
 }
 

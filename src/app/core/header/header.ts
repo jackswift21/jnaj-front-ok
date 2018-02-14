@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { CoreLayoutService } from '../providers';
+import {Component} from '@angular/core';
+import {CoreLayoutService} from '../providers';
 declare const $:any;
 declare const here:any;
 

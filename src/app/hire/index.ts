@@ -9,4 +9,4 @@ import {ROUTING,COMPONENTS,DIRECTIVES,PIPES} from './routing';
   //providers: [...PROVIDERS],
 })
 
-export class ContactModule {}
+export class HireModule {}

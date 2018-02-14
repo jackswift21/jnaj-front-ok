@@ -1,0 +1,13 @@
+<!-- Search Page -->
+<div class="w3-container w3-light-grey" style="padding:128px 16px" id="mySearch">
+<h3 class="w3-center">SEARCH JACK</h3>
+<div class="w3-row-padding" style="margin-top:64px">
+<div class="w3-half">
+<p><a href="Javascript:void(0)" (click)="searchAdv=!searchAdv">
+	{{searchAdv?'Back to Simple':'Use Advanced'}} Search</a></p>
+<form id="search" *ngIf='!searchAdv'>
+<p><input id="simpleSearch" class="w3-input w3-border" type="text" name="simpleSearch" 
+	placeholder="Search J.N.A.J."></p>
+<p><button class="w3-button w3-blue" (click)="searchJack()"><i class="fa fa-search"> </i> SEARCH</button></p></form>
+<search-adv *ngIf='searchAdv'></search-adv></div>
+<search-results></search-results></div></div>

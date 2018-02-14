@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import {HttpModule,JsonpModule} from '@angular/http';
 import {COMPONENTS,DIRECTIVES,PIPES,ROUTING} from './routing';
-//import {PROVIDERS} from './services';
+import {PROVIDERS} from './services';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,7 @@ import {COMPONENTS,DIRECTIVES,PIPES,ROUTING} from './routing';
     HttpModule,
     JsonpModule,
     ROUTING],
-  //providers: [...PROVIDERS],
+  providers: [...PROVIDERS],
   exports:[
     CommonModule,
     FormsModule,
@@ -31,5 +31,5 @@ import {COMPONENTS,DIRECTIVES,PIPES,ROUTING} from './routing';
 
 export class SharedModule {}
 //export * from './models';
-//export * from './services';
+export * from './services';
 export * from './animations';

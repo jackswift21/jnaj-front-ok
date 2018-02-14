@@ -9,7 +9,7 @@ declare const here:any;
 })
 
 export class HireMe {
-	contactJack(){
+	hireJack(){
     let data = {};
     $("#contact").serializeArray().forEach(a => data[a.name] = a.value);
     //data['experience'] = this.exp.val();

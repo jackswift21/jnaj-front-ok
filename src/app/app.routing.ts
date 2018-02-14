@@ -12,6 +12,7 @@ const routes:Routes = [
 	{path:'samples',loadChildren:'./samples#SamplesModule'},
 	{path:'gallery',loadChildren:'./gallery#GalleryModule'},
 	{path:'signin',loadChildren:'./auth#AuthModule'},
+	{path:'signup',loadChildren:'./auth#AuthModule'},
 	{path:'about',loadChildren:'./about#AboutModule'},
 	/*{path:'profile',loadChildren:'./user#UserProfileModule'},
 	{path:'vendor',loadChildren:'./vendor#VendorProfileModule'},

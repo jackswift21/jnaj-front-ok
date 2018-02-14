@@ -5,18 +5,20 @@ declare const $:any;
 declare const here:any;
 
 @Component({
-  selector: 'samples',
-  templateUrl: './samples.html',
-  styleUrls: ['./samples.css']
+  selector: 'profiles',
+  templateUrl: './profiles.html',
+  styleUrls: ['./profiles.css']
 })
 
-export class Samples {
+export class Profiles {
 	query;
-	samples;
+	profiles;
 	constructor(private route:ActivatedRoute,private state:AppState){}
 	ngOnInit(){
 		this.route.queryParamMap.subscribe(params => {
-			this.query = {...params.keys, ...params};here(this.query);});
-		this.state.results.samples.subscribe(samples => {
-			this.samples = samples;here(this.samples);});}
+			this.query = {...params.keys, ...params};
+			here(this.query);});
+		this.state.results.profiles.subscribe(profiles => {
+			this.profiles = profiles;
+			here(this.profiles);});}
 }

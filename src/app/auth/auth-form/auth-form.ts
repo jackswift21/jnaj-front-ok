@@ -3,12 +3,14 @@ declare const $:any;
 declare const here:any;
 
 @Component({
-  selector: 'auth',
-  templateUrl: './auth.html',
-  styleUrls: ['./auth.css']
+  selector: 'auth-form',
+  templateUrl: './auth-form.html',
+  styleUrls: ['./auth-form.css']
 })
 
-export class Auth {
+export class AuthForm {
+  authType = 'signin';
+  authRole = 'user';
 	signin(){
     let data = {};
     $("#auth").serializeArray().forEach(a => data[a.name] = a.value);

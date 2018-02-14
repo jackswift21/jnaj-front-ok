@@ -1,0 +1,79 @@
+<!-- Profile Form Page -->
+<div class="w3-container w3-light-grey" style="padding:128px 16px" id="mySearch">
+<h3 class="w3-center">{{isNew?'NEW':'UPDATE'}} PROFILE</h3>
+<div class="w3-row-padding" style="margin-top:64px">
+<div class="w3-half">
+<form id="search">
+	<p>
+		<label for="firstName">First Name</label>
+		<input class="w3-input w3-border" type="text" required="" name="firstName" 
+		placeholder="First Name"
+		oninvalid="this.setCustomValidity('You must specify at least one language or framework')"
+		oninput="setCustomValidity('')"></p>
+	<p>
+		<label for="lastName">Last Name</label>
+		<input class="w3-input w3-border" type="text" required="" name="lastName" 
+		placeholder="Last Name"
+		oninvalid="this.setCustomValidity('You must specify at least one language or framework')"
+		oninput="setCustomValidity('')"></p>
+	<p>
+		<label for="profilePic">Profile Pic</label>
+		<button class="w3-button w3-black" type="button" (click)="openUploadPic()">Upload Image</button>
+		<input class="w3-input w3-border" type="text" required="" name="profilePic" 
+		placeholder="Profile Pic"
+		oninvalid="this.setCustomValidity('You must specify at least one language or framework')"
+		oninput="setCustomValidity('')"></p>
+	<p>
+		<label for="languages">Languages</label>
+		<input class="w3-input w3-border" type="text" required="" name="languages" 
+		placeholder="Languages"
+		oninvalid="this.setCustomValidity('You must specify at least one language or framework')"
+		oninput="setCustomValidity('')"></p>
+	<p>
+		<label for="frameworks">Frameworks</label>
+		<input class="w3-input w3-border" type="text" required="" name="frameworks" 
+		placeholder="Enter the needed languages and/or frameworks"
+		oninvalid="this.setCustomValidity('You must specify at least one language or framework')"
+		oninput="setCustomValidity('')"></p>
+	<p>
+		<label for="focus">Focus</label>
+		<input class="w3-input w3-border" type="text" 
+		placeholder="Focus" name="focus"></p>
+	<p>
+		<label for="skills">Skills</label>
+		<input class="w3-input w3-border" type="text" 
+		placeholder="Enter any skills you'd like candidates to have" name="skills"></p>
+	<p>
+		<label for="experience">Experience</label>
+		<span class="sliderDiv">
+		<input type="range" min="0" max="11" value="1" step="1" class="slider" 
+		id="myRange" (change)="setExperience($event)"></span>
+		<input class="w3-input-number w3-border" type="text" name="experience" 
+		id="experience" disabled></p>
+	<p>
+		<label for="education">Formal Education</label><br>
+		<input class="w3-radio" type="radio" name="education" value="N" checked> None
+		<input class="w3-radio" type="radio" name="education" value="B"> Bachelor
+		<input class="w3-radio" type="radio" name="education" value="M"> Master
+		<input class="w3-radio" type="radio" name="education" value="D"> PhD</p>
+	<p>
+		<label for="location">Location</label>
+		<input class="w3-input w3-border" type="text" placeholder="Enter location" name="location">
+		<button class="w3-button w3-black" type="button" (click)="getUserLocation()">Use Current Location</button></p>
+	<p>
+		<label for="availibility">Availability</label><br>
+		<input class="w3-radio" type="radio" name="availibility" value="immediate" checked> Right Now
+		<input class="w3-radio" type="radio" name="availibility" value="next30"> Next 30 Days
+		<input class="w3-radio" type="radio" name="availibility" value="other"> Just Keep Me Posted On New Opportunities</p>
+	<p>
+		<label for="desiredLength">Desired Position Length</label>
+		<select class="w3-input w3-border" name="desiredLength">
+		<option value="">Choose length of project</option>
+		<option value="short">0 - 3 mos</option>
+		<option value="medium">3 - 6 mos</option>
+		<option value="fullyear">6 - 12 mos</option>
+		<option value="longterm">12+ mos</option></select></p>
+	<p>
+		<button class="w3-button w3-blue" type="button" (click)="submitProfile()">
+		<i class="fa fa-spinner" style="display:none"></i>
+		<i class="fa fa-search"> </i> Submit Profile</button></p></form></div></div></div>
