@@ -1,7 +1,38 @@
 <!-- App Features Page -->
 <div class="w3-container" style="padding:128px 16px">
-  <div class="w3-row-padding">
-    <div class="w3-col m6">
-      <h3>APP FEATURES</h3>
-      <ul class="w3-ul">
-        <li>Under construction<li></ul></div></div></div>
+<h3>APP FEATURES</h3>
+<p>Features that are under construction are marked with *<br>
+New features scheduled for future implementation are marked with **</p>
+<div class="w3-row-padding">
+<div class="w3-col m6">
+<div class="w3-black w3-xlarge w3-padding-16 w3-center">Angular 4</div>
+<table class="w3-table w3-white w3-hover-shadow">
+<tr class="w3-padding-16" style="border-bottom:1px solid #ddd">
+<th>NPM Module</th><th>Description of Use</th><th>Date Added</th></tr>
+<tr *ngFor="let f of angFeatures" class="w3-padding-16" style="border-bottom:1px solid #ddd">
+<td>{{f.npm}}</td><td>{{f.desc}}</td><td>{{f.date}}</td></tr></table>
+<p><a [routerLink]="['/contact',{data:{subject:'suggestion'}}]" 
+  class="w3-button w3-green w3-padding-large">
+  <i class="fa fa-plus"> </i> Make Suggestion</a></p></div>
+
+<div class="w3-col m6">
+<div class="w3-black w3-xlarge w3-padding-16 w3-center">Node</div>
+<table class="w3-table w3-white w3-hover-shadow">
+<tr class="w3-padding-16" style="border-bottom:1px solid #ddd">
+<th>NPM Module</th><th>Description of Use</th><th>Date Added</th></tr>
+<tr *ngFor="let f of nodeFeatures" class="w3-padding-16" style="border-bottom:1px solid #ddd">
+<td>{{f.npm}}</td><td>{{f.desc}}</td><td>{{f.date}}</td></tr></table>
+<p><a [routerLink]="['/contact',{data:{subject:'suggestion'}}]" 
+  class="w3-button w3-green w3-padding-large">
+  <i class="fa fa-plus"> </i> Make Suggestion</a></p></div>
+
+<div class="w3-col m6">
+<div class="w3-black w3-xlarge w3-padding-16 w3-center">Outstanding Issues</div>
+<table class="w3-table w3-white w3-hover-shadow">
+<tr class="w3-padding-16" style="border-bottom:1px solid #ddd">
+<th>Issue Name</th><th>Description</th><th>Open/Closed</th></tr>
+<tr *ngFor="let f of issues" class="w3-padding-16" style="border-bottom:1px solid #ddd">
+<td>{{f.name}}</td><td>{{f.desc}}</td><td>{{f.open?'Open':'Closed'}}</td></tr></table>
+<p><a [routerLink]="['/contact',{data:{subject:'suggestion'}}]" 
+  class="w3-button w3-green w3-padding-large">
+  <i class="fa fa-plus"> </i> Make Suggestion</a></p></div></div></div>

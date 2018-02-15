@@ -9,7 +9,6 @@ export const DIRECTIVES = [];
 export const PIPES = [];//MarkdownPipe];
 
 const routes:Routes = [
-	{path:'',redirectTo:'signin',pathMatch:'full'},
 	{path:':authType',component:AuthForm,canActivate:[NoAuthGuard]}];
 	//{path:'',component:SpotlightPage,resolve:{spotlight:SpotlightResolver}},
 	//{path:':slug',component:ArticlePage,resolve:{article:ArticleResolver}}];
