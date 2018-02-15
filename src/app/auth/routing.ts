@@ -8,7 +8,9 @@ export const COMPONENTS = [AuthForm];//ArticlePage,SpotlightPage,CommentDiv];
 export const DIRECTIVES = [];
 export const PIPES = [];//MarkdownPipe];
 
-const routes:Routes = [{path:':authType/:authRole',component:AuthForm,canActivate:[NoAuthGuard]}];
+const routes:Routes = [
+	{path:'',redirectTo:'signin',pathMatch:'full'},
+	{path:':authType',component:AuthForm,canActivate:[NoAuthGuard]}];
 	//{path:'',component:SpotlightPage,resolve:{spotlight:SpotlightResolver}},
 	//{path:':slug',component:ArticlePage,resolve:{article:ArticleResolver}}];
 export const ROUTING:ModuleWithProviders = RouterModule.forChild(routes);
