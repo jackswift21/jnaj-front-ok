@@ -12,5 +12,7 @@ declare const here:any;
 export class Search {
   searchAdv = false;
   constructor(private search:SearchService){}
-  searchJack(){this.search.go({q:$('#simpleSearch').val()})}
+  searchJack(){
+  	let q = $('#simpleSearch').val();
+  	q?this.search.go({q:q}):null}
 }
