@@ -11,7 +11,8 @@ declare const here:any;
 export class AuthForm {
   authType = 'signin';
   authRole = 'user';
-	doAuth(){
+	toggleAuthType(){this.authType = this.authType =='signin'?'signup':'signin'}
+  doAuth(){
     let data = {};
     $("#auth").serializeArray().forEach(a => data[a.name] = a.value);
     //data['experience'] = this.exp.val();

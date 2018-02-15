@@ -3,7 +3,7 @@
   <h3 class="w3-center">SIGN {{authType=='signin'?'IN':'UP'}} - J.N.A.J.</h3>
   <div class="w3-row-padding" style="margin-top:64px">
     <div class="w3-half">
-    <p><a href="Javascript:void(0)" (click)="authType=!authType">
+    <p><a href="Javascript:void(0)" (click)="toggleAuthType()">
     {{authType=='signin'?'Don\'t have a account?':'Already have account?'}}</a></p>
       <form id="authForm">
         <p *ngIf='authType=="signup"'>
