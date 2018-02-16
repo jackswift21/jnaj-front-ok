@@ -1,53 +1,35 @@
 <!-- Auth Page -->
-<div class="w3-container w3-light-grey" style="padding:128px 16px" id="auth">
+<div class="w3-container w3-white" style="padding:128px 16px" id="auth">
   <h3 class="w3-center">SIGN {{authType=='signin'?'IN':'UP'}} - J.N.A.J.</h3>
   <div class="w3-row-padding" style="margin-top:64px">
-    <div class="w3-half">
-    <p><a routerLink="{{authType=='signin'?'/signup':'/signin'}}">
-    {{authType=='signin'?'Don\'t have a account?':'Already have account?'}}</a></p>
+    <div class="w3-half w3-card w3-dark-grey" style="margin-left">
     <!--errors-list [errors]="errors"></errors-list-->
     <form [formGroup]="authForm" (ngSubmit)="doAuth()">
-      <!--fieldset [disabled]="isSubmitting"-->
-      <!--fieldset class="form-group">
-        <input type="text" formControlName="name.first" placeholder="First Name" class="form-control form-control-lg"/>
-        <input type="text" formControlName="name.last" placeholder="Last Name" class="form-control form-control-lg"/></fieldset-->
-      <p *ngIf='authType=="signup"'>
-      <label for="email">Email</label>
-      <input class="w3-input w3-border" type="text" required="" name="email" placeholder="Email"
-      oninvalid="this.setCustomValidity('You must specify at least one language or framework')"
-      oninput="setCustomValidity('')"></p>
-      <!--fieldset class="form-group" *ngIf='authType=="signup"'><input type="text" formControlName="email" placeholder="Email" class="form-control"/></fieldset-->
-      <p>
-      <label for="handle">Username</label>
-      <input class="w3-input w3-border" type="text" required="" name="handle" 
-      placeholder="Username"
-      oninvalid="this.setCustomValidity('You must specify at least one language or framework')"
-      oninput="setCustomValidity('')"></p>
-      <!--fieldset class="form-group"><input type="text" formControlName="handle" placeholder="Username" class="form-control"/></fieldset-->
-      <p>
-      <label for="password">Password</label>
-      <input class="w3-input w3-border" type="text" required="" name="password" 
-      placeholder="Enter Passowrd"
-      oninvalid="this.setCustomValidity('You must specify at least one language or framework')"
-      oninput="setCustomValidity('')"></p>
-      <!--fieldset class="form-group">
-        <input id="pinCtrl" min="0" max="9999" pattern="[0-9]*" type="number" inputmode="numeric" autofocus  
-          style="-webkit-text-security:disc;" class="form-control" 
-          placeholder="Enter Pin" [formControl]="pinCtrl"/></fieldset-->
-      <p *ngIf='authType=="signup"'>
-      <label for="c_password">Confirm Password</label>
-      <input class="w3-input w3-border" type="text" required="" name="c_password" 
-      placeholder="Confirm Password"
-      oninvalid="this.setCustomValidity('You must specify at least one language or framework')"
-      oninput="setCustomValidity('')"></p>
-      <p>
-      <button class="w3-button w3-blue" type="button" (click)="doAuth()">
-      <i class="fa fa-spinner" style="display:none"> </i>
-      <i class="fa fa-search"> </i> GO</button></p>
-      <!--button class="btn btn-primary pull-xs-right" [disabled]="!authForm.valid" type="submit">
-      {{ authType === 'signin'?'Sign In':'Sign Up' }}</button-->
-
-    <!--/fieldset--></form></div></div></div>
+      <fieldset [disabled]="isSubmitting">
+        <ng-container *ngIf='authType=="signup"' formGroupName="name">
+          <p><input class="w3-input" formControlName="first" 
+            placeholder="First Name" autocomplete="first-name"/></p>
+          <p><input class="w3-input" formControlName="last" 
+            placeholder="Last Name" autocomplete="last-name"/></p></ng-container>
+        <p *ngIf='authType=="signup"'><input class="w3-input" formControlName="email" 
+          placeholder="Email" autocomplete="email"
+          oninvalid="this.setCustomValidity('You must specify at least one language or framework')"
+          oninput="setCustomValidity('')"/></p>
+        <p><input class="w3-input" required="" name="handle" formControlName="handle" 
+          placeholder="Username" autocomplete="username"/></p>
+          <!--oninvalid="this.setCustomValidity('You must specify at least one language or framework')"
+          oninput="setCustomValidity('')"-->
+        <p><input class="w3-input" type="password" formControlName="password" 
+          placeholder="Password" autocomplete="new-password"/></p>
+        <p *ngIf='authType=="signup"'><input class="w3-input" type="password" formControlName="c_password" 
+          placeholder="Confirm Password" autocomplete="new-password"/></p>
+          <!--p><input id="pinCtrl" min="0" max="9999" pattern="[0-9]*" type="number" inputmode="numeric" autofocus  
+          style="-webkit-text-security:disc;" placeholder="Enter Pin" [formControl]="pinCtrl"/></p-->
+        <p><button class="w3-button w3-green" [disabled]="!authForm.valid" type="submit">
+          <i class="fa fa-spinner" style="display:none"> </i>
+          <i class="fa fa-sign-in"> </i> Sign {{authType=='signin'?'In':'Up'}}</button></p>
+        <p><a routerLink="{{authType=='signin'?'/signup':'/signin'}}">
+          {{authType=='signin'?'Need an account?':'Already have account?'}}</a></p></fieldset></form></div></div></div>
 
     <!--fieldset class="form-group" *ngIf='authRole=="admin"&&authType=="signup"'>
       <input type="text" formControlName="adminCode" placeholder="Admin Requestration Code" class="form-control"/></fieldset-->

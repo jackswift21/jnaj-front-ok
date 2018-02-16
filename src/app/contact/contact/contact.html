@@ -1,0 +1,23 @@
+<!-- Contact Section -->
+<div class="w3-container w3-light-grey" style="padding:128px 16px" id="contact">
+  <h3 class="w3-center">CONTACT JACK</h3>
+  <p class="w3-center w3-large">Lets get in touch. Send us a message:</p>
+  <div class="w3-row-padding" style="margin-top:64px">
+    <div class="w3-half">
+      <p><i class="fa fa-map-marker fa-fw w3-xlarge w3-margin-right"></i> Houston, US</p>
+      <p><i class="fa fa-phone fa-fw w3-xlarge w3-margin-right"></i> Phone: +1281 7038887</p>
+      <p><i class="fa fa-envelope fa-fw w3-xlarge w3-margin-right"> </i> Email: jackneedsajob01@gmail.com</p><br>
+      <!--errors-list [errors]="errors"></errors-list-->
+      <form [formGroup]="contactForm" (ngSubmit)="contactJack()">
+        <fieldset [disabled]="isSubmitting">
+          <p><select class="w3-input" placeholder="Subject" formControlName="subject">
+            <option *ngFor="let s of subjects" [value]="s.val">{{s.label}}</option></select></p>
+          <p><input class="w3-input" placeholder="Name" formControlName="name" autocomplete="name" id="name"
+            oninvalid="this.setCustomValidity('Enter Your Name Here')"
+            oninput="setCustomValidity('')"></p>
+          <p><input class="w3-input" placeholder="Email" formControlName="email" autocomplete="email"></p>
+          <p><textarea class="w3-input" placeholder="Message" formControlName="message"></textarea></p>
+          <p><button class="w3-button w3-black" type="submit" [disabled]="!contactForm.valid">
+            <i class="fa fa-paper-plane"> </i> Send Message</button></p></fieldset></form></div>
+    <!--div class="w3-half"><div id="googleMap" class="w3-greyscale-max" style="width:100%;height:510px;"></div></div-->
+    </div></div>

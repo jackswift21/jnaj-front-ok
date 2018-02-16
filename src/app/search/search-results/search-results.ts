@@ -1,6 +1,4 @@
-import {Component} from '@angular/core';
-import {AppState} from '../../';
-import {SearchService} from '../providers';
+import {Component,Input} from '@angular/core';
 declare const $:any;
 declare const here:any;
 
@@ -11,12 +9,5 @@ declare const here:any;
 })
 
 export class SearchResults {
-	query;
-	results = {profiles:0,samples:0,articles:0};
-	constructor(private search:SearchService,private state:AppState){}
-	ngOnInit(){
-		this.search.query.subscribe(q => {this.query = q;here(this.query);});
-		this.state.results.profiles.subscribe(p => this.results.profiles = p.length);
-		this.state.results.samples.subscribe(s => this.results.samples = s.length);
-		this.state.results.articles.subscribe(a => this.results.articles = a.length);}
+	@Input() results = {profiles:0,samples:0,articles:0};
 }
