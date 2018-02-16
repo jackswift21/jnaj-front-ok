@@ -7,28 +7,24 @@
       <p><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i> Houston, US</p>
       <p><i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i> Phone: +1281 7038887</p>
       <p><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"> </i> Email: jackneedsajob@mail.com</p><br>
-      <form id="contact">
+      <form id="contactForm">
+        <p>
+          <select class="w3-input w3-border" type="text" placeholder="Subject" required 
+            name="subject" id="subject" [(ngModel)]="selectedSubject">
+            <option *ngFor="let s of subjects" [value]="s.val">{{s.label}}</option></select></p>
         <p>
           <input class="w3-input w3-border" type="text" placeholder="Name" 
-          required="" name="Name" autocomplete="name"
+          required="" name="name" autocomplete="name" id="name"
           oninvalid="this.setCustomValidity('Enter Your Name Here')"
           oninput="setCustomValidity('')"></p>
         <p>
           <input class="w3-input w3-border" type="text" placeholder="Email" 
-          required name="Email" autocomplete="email"></p>
-        <p>
-          <select class="w3-input w3-border" type="text" placeholder="Subject" 
-          required name="Subject">
-            <option value="">Choose Subject</option>
-            <option value="suggestion">Feedback & Suggestions</option>
-            <option value="question">Questions</option>
-            <option value="advertise">Advertise With Us</option>
-            <option value="invest">Invest In Us</option></select></p>
+          required name="email" autocomplete="email"></p>
         <p>
           <textarea class="w3-input w3-border" type="text" placeholder="Message" 
-          required name="Message"></textarea></p>
+          required name="message"></textarea></p>
         <p>
           <button class="w3-button w3-black" type="button" (click)="contactJack()">
-            <i class="fa fa-paper-plane"></i> SEND MESSAGE</button></p></form></div>
+            <i class="fa fa-paper-plane"> </i> Send Message</button></p></form></div>
     <!--div class="w3-half"><div id="googleMap" class="w3-greyscale-max" style="width:100%;height:510px;"></div></div-->
     </div></div>

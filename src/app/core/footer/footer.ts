@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { CoreLayoutService } from '../providers';
+import {Component} from '@angular/core';
+import {Router} from '@angular/router';
+import {CoreLayoutService} from '../providers';
 declare const $:any;
 declare const here:any;
 //import { User,UserService } from '../../../shared';
@@ -12,7 +13,14 @@ declare const here:any;
 
 export class Footer {
   isIntro;
-  constructor(private layout:CoreLayoutService){layout.isIntro.subscribe(b => this.isIntro = b);}
+  nav = [
+    {route:'/contact',query:{subject:'advertise'},title:'Advertise',label:'Advertise With Us'},
+    {route:'/contact',query:{subject:'invest'},title:'Invest',label:'Invest In Us'},
+    {route:'/about',query:{},title:'About',label:'About J.N.A.J.'},
+    {route:'/about/thanks',query:{},title:'Thanks',label:'Special Thanks'}];
+  constructor(
+    private router:Router,
+    private layout:CoreLayoutService){layout.isIntro.subscribe(b => this.isIntro = b);}
   toggle(){this.layout.toggle();}
   backToTop(){return window.scrollTo(0,0)}
 }

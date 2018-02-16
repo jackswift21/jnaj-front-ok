@@ -11,8 +11,8 @@ New features scheduled for future implementation are marked with **</p>
 <th>NPM Module</th><th>Description of Use</th><th>Date Added</th></tr>
 <tr *ngFor="let f of angFeatures" class="w3-padding-16" style="border-bottom:1px solid #ddd">
 <td>{{f.npm}}</td><td>{{f.desc}}</td><td>{{f.date}}</td></tr></table>
-<p><a [routerLink]="['/contact',{data:{subject:'suggestion'}}]" 
-  class="w3-button w3-green w3-padding-large">
+<p><a class="w3-button w3-green w3-padding-large"
+  routerLink="/contact" [queryParams]="{subject:'suggestion'}">
   <i class="fa fa-plus"> </i> Make Suggestion</a></p></div>
 
 <div class="w3-col m6">
@@ -22,8 +22,8 @@ New features scheduled for future implementation are marked with **</p>
 <th>NPM Module</th><th>Description of Use</th><th>Date Added</th></tr>
 <tr *ngFor="let f of nodeFeatures" class="w3-padding-16" style="border-bottom:1px solid #ddd">
 <td>{{f.npm}}</td><td>{{f.desc}}</td><td>{{f.date}}</td></tr></table>
-<p><a [routerLink]="['/contact',{data:{subject:'suggestion'}}]" 
-  class="w3-button w3-green w3-padding-large">
+<p><a class="w3-button w3-green w3-padding-large"
+  routerLink="/contact" [queryParams]="{subject:'suggestion'}">
   <i class="fa fa-plus"> </i> Make Suggestion</a></p></div>
 
 <div class="w3-col m6">
@@ -33,6 +33,6 @@ New features scheduled for future implementation are marked with **</p>
 <th>Issue Name</th><th>Description</th><th>Open/Closed</th></tr>
 <tr *ngFor="let f of issues" class="w3-padding-16" style="border-bottom:1px solid #ddd">
 <td>{{f.name}}</td><td>{{f.desc}}</td><td>{{f.open?'Open':'Closed'}}</td></tr></table>
-<p><a [routerLink]="['/contact',{data:{subject:'suggestion'}}]" 
-  class="w3-button w3-green w3-padding-large">
+<p><a class="w3-button w3-green w3-padding-large"
+  routerLink="/contact" [queryParams]="{subject:'suggestion'}">
   <i class="fa fa-plus"> </i> Make Suggestion</a></p></div></div></div>

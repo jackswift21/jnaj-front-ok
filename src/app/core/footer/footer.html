@@ -8,15 +8,9 @@
       <i class="fa fa-twitter w3-hover-opacity"></i>
       <i class="fa fa-linkedin w3-hover-opacity"></i></div>
     <div class="w3-medium">
-      <a routerLink="/advertise" title="W3.CSS" class="w3-margin-left w3-hover-text-green">
-        Advertise With Us</a>
-      <a routerLink="/invest" title="W3.CSS" class="w3-margin-left w3-hover-text-green">
-        Invest In Us</a>
-      <a routerLink="/about/thanks" title="W3.CSS" class="w3-margin-left w3-hover-text-green">
-        Special Thanks</a>
+      <a *ngFor="let n of nav" class="w3-margin-left w3-hover-text-green" title="{{n.title}}" 
+        routerLink="{{n.route}}" [queryParams]="n.query">{{n.label}}</a>
       <p *ngIf="!isIntro">Your use of this site means that you have read and accepted our 
-        <a routerLink="/terms" title="W3.CSS" class="w3-hover-text-green">
-          Terms and Conditions</a> and 
-        <a routerLink="/privacy" title="W3.CSS" class="w3-hover-text-green">
-          Privacy Policy</a>.</p>
-      <p>JackNeedsAJob&copy; 2018. All rights reserved.</p></div></div></footer>
+        <a routerLink="/terms" title="Terms" class="w3-hover-text-green">Terms and Conditions</a> and 
+        <a routerLink="/privacy" title="Privacy" class="w3-hover-text-green">Privacy Policy</a>.</p>
+      <p>&copy; JackNeedsAJob 2018. All rights reserved.</p></div></div></footer>

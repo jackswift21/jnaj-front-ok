@@ -30,6 +30,6 @@ import {PROVIDERS} from './services';
 })
 
 export class SharedModule {}
-//export * from './models';
+export * from './models';
 export * from './services';
 export * from './animations';

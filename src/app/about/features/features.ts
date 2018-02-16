@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {Router} from '@angular/router';
 declare const $:any;
 declare const here:any;
 
@@ -9,6 +10,7 @@ declare const here:any;
 })
 
 export class AppFeaturesList {
+	constructor(private router:Router){}
 	angFeatures =[
 		{npm:'Express',desc:'Angular App Server',date:'2/05/2018'},
 		{npm:'Angular Service',desc:'Api Service - manages methods, headers and error handling for Http requests',date:'2/09/2018'},

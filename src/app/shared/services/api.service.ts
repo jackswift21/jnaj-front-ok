@@ -8,7 +8,7 @@ import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class ApiService {
-  url = '';//environment.api_jnaj;
+  url = environment.api_jnaj;
   constructor(private http:Http){}//,private _window:AppWindowService){}
   get(path:string,params:URLSearchParams = new URLSearchParams()):Observable<any>{
     let url = `${this.url}${path}`,headers = this.setHeaders(path),search = params;
@@ -20,7 +20,7 @@ export class ApiService {
     .catch(this.formatErrors)
     .map((res: Response) => res.json());}
   post(path:string,body: Object = {}):Observable<any>{
-    return this.http.post(`${this.url}${path}`,JSON.stringify(body),{ headers: this.setHeaders(path)})
+    return this.http.post(`${this.url}${path}`,JSON.stringify(body),{headers:this.setHeaders(path)})
     .catch(this.formatErrors)
     .map((res:Response) => res.json());}
   delete(path):Observable<any>{

@@ -14,6 +14,5 @@ export class SearchService {
 	constructor(private api:ApiService,private state:AppState){}
   go(q){
   	this.newQuery.next(q);
-  	this.api.get('/assets/jnaj/data/profiles.json').subscribe(data => 
-  		this.state.notify({profiles:data.profiles}));}
+  	this.api.get('/profiles').subscribe(data => this.state.notify({profiles:data.profiles}));}
 }
