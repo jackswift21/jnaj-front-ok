@@ -13,7 +13,6 @@ declare const here:any;
 
 export class Search {
   searchAdv = false;
-  results = {profiles:0,samples:0,articles:0};
   errors:Errors = new Errors();
   isSubmitting = false;
   searchInput:FormControl = new FormControl('',Validators.required);
@@ -23,13 +22,13 @@ export class Search {
   	this.errors = new Errors();
     this.isSubmitting = true;
     const query = this.searchInput.value;
-    here(query);
-    this.searchInput.reset();
-  	/*this.search.go(query,'/search').subscribe(
-      data => this.results = data.results,
+  	this.search.go(query).subscribe(
+      data => {
+      	this.searchInput.reset();
+      	this.isSubmitting = false;
+      	here(data.results)},
       err => {
         here(err,this.errors.errors);
         this.errors = {errors:Object.assign({},this.errors.errors,err)};
-        this.isSubmitting = false;});}*/
-	}
+        this.isSubmitting = false;});}
 }

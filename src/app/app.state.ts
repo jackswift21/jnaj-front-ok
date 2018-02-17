@@ -1,21 +1,23 @@
 import {Injectable} from '@angular/core';
 import {Router,NavigationStart,NavigationEnd} from '@angular/router';
 import {Observable,BehaviorSubject,ReplaySubject} from 'rxjs/Rx';
-import {ApiService} from './shared';
 declare const here:any;
 
-interface SearchResults {profiles:any[];samples:any[];articles:any[];}
+let initialState = {
+  searches:[]
+};
 
 @Injectable()
 export class AppState {
-	constructor(private api:ApiService){}
-  private searches = {
-  	profiles:new BehaviorSubject<any[]>([]),
-  	samples:new BehaviorSubject<any[]>([]),
-  	articles:new BehaviorSubject<any[]>([])};
-  public results = {
-  	profiles:this.searches.profiles.asObservable(),
-  	samples:this.searches.samples.asObservable(),
-  	articles:this.searches.articles.asObservable()};
-  notify(data){Object.keys(data).forEach(k => this.searches[k].next(data[k]));}
+  private _current = new BehaviorSubject<any>({});
+  //public current = this._current.asObservable();
+  initialize(){
+    if(localStorage['jnajAppState']) this.notify(JSON.parse(localStorage['jnajAppState']));
+    else this.notify(initialState);}
+  notify(data){
+    let state = this._current.getValue();
+    Object.keys(data).forEach(k => state[k] = data[k]);
+    localStorage.setItem('jnajAppState',JSON.stringify(state));
+    this._current.next(state);}
+  get current(){return this._current.getValue()}
 }

@@ -6,9 +6,11 @@ import {AppState} from './app.state';
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })
+
 export class App {
   title = 'app';
-  constructor(private appState:AppState){}
+  constructor(private state:AppState){}
+  ngOnInit(){this.state.initialize();}
   //analyzethis;
   //this.analyzethis = new AnalyzeThis('ok')
 }

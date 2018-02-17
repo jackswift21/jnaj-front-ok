@@ -1,4 +1,5 @@
 import {Component,Input} from '@angular/core';
+import {SearchService} from '../providers';
 declare const $:any;
 declare const here:any;
 
@@ -9,5 +10,7 @@ declare const here:any;
 })
 
 export class SearchResults {
-	@Input() results = {profiles:0,samples:0,articles:0};
+	newSearch;
+	constructor(private search:SearchService){}
+	ngOnInit(){this.search.newSearch.subscribe(s => {this.newSearch = s;here(this.newSearch);});}
 }

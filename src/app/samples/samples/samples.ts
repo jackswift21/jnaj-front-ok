@@ -15,8 +15,8 @@ export class Samples {
 	samples;
 	constructor(private route:ActivatedRoute,private state:AppState){}
 	ngOnInit(){
-		this.route.queryParamMap.subscribe(params => {
+		/*this.route.queryParamMap.subscribe(params => {
 			this.query = {...params.keys, ...params};here(this.query);});
-		this.state.results.samples.subscribe(samples => {
-			this.samples = samples;here(this.samples);});}
+		this.state.current.searches.samples.subscribe(samples => {
+			this.samples = samples;here(this.samples);});}*/}
 }

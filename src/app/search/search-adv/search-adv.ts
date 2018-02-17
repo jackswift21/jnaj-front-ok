@@ -44,11 +44,13 @@ export class AdvancedSearch {
     this.isSubmitting = true;
     const query = this.searchForm.value;
     here(query);
-    /*this.search.go(query,'/search').subscribe(
-      data => this.results = data.results,
+    this.search.go(query).subscribe(
+      data => {
+        this.searchForm.reset();
+        this.isSubmitting = false;
+        here(data.results)},
       err => {
         here(err,this.errors.errors);
         this.errors = {errors:Object.assign({},this.errors.errors,err)};
-        this.isSubmitting = false;});}*/
-  }
+        this.isSubmitting = false;});}
 }

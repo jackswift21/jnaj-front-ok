@@ -5,14 +5,19 @@ import {ApiService} from '../../shared';
 import {AppState} from '../../';
 declare const here:any;
 
-//interface SearchResults {profiles:number;samples:number;articles:number;}
+interface Search {query:string,results:{profiles:any[];samples:any[];articles:any[];}}
+let initialSearch = {query:'',results:{profiles:[],samples:[],articles:[]}};
 
 @Injectable()
 export class SearchService {
-	newQuery = new BehaviorSubject<string>('');
-	query = this.newQuery.asObservable();
+	_newSearch = new BehaviorSubject<Search>(initialSearch);
+	newSearch = this._newSearch.asObservable();
 	constructor(private api:ApiService,private state:AppState){}
   go(q){
-  	this.newQuery.next(q);
-  	this.api.get('/profiles').subscribe(data => this.state.notify({profiles:data.profiles}));}
+  	return this.api.get('/search').map(data => {
+  		data = {profiles:data.profiles,samples:['a','b','c'],articles:['a','b','c','d']};
+  		let searches = this.state.current.searches;
+  		this.state.notify({searches:[...searches,{query:q,results:data}]});
+  		this._newSearch.next({query:q,results:data});
+  		return {results:data};});}
 }

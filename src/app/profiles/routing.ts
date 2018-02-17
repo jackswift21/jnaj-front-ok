@@ -3,7 +3,7 @@ import {RouterModule,Routes} from '@angular/router';
 import {Profiles} from './profiles';
 import {ProfileForm} from './profile-form';
 //import {ArticlePage,SpotlightPage,CommentDiv,MarkdownPipe} from './components';
-//import {ArticleResolver,SpotlightResolver} from './providers';
+import {ProfilesResolver} from './providers';
 
 export const COMPONENTS = [Profiles,ProfileForm];//ArticlePage,SpotlightPage,CommentDiv];
 export const DIRECTIVES = [];
