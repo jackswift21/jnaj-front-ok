@@ -36,7 +36,7 @@ export class HireMe {
       'pLength':[''],
       'pUrgency':['immediate',Validators.required],
       'frameworks':[''],
-      'emailMeBack':['checked'],
+      'emailMeBack':[true],
       'msg':['']});}
   hireJack(){
     this.errors = new Errors();

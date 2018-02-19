@@ -30,7 +30,7 @@ export class AdvancedSearch {
       'education':['N'],
       'experience':['1 Year'],
       'location':[''],
-      'excludeOOC':[''],
+      'excludeOOC':[false],
       'pLength':[''],
       'pUrgency':['immediate']});
     this.searchForm.get('experience').disable();}
