@@ -12,19 +12,18 @@ declare const here:any;
 })
 
 export class ProfileForm {
-	isNew = true;
+	openUploadPic(){}
+  getUserLocation(){}
+  picUploaded;
 	pLengths = [
     {val:"",label:"Choose Desired Project Length"},
     {val:"short",label:"0 - 3 mos"},
     {val:"medium",label:"3 - 6 mos"},
     {val:"fullyear",label:"6 - 12 mos"},
     {val:"longterm",label:"12+ mos"}];
-  picUploaded;
-  openUploadPic(){}
-  getUserLocation(){}
-	experienceSlider;
-	errors:Errors = new Errors();
+	isNew = true;
   isSubmitting = false;
+  errors:Errors = new Errors();
   profileForm:FormGroup;
   constructor(private fb:FormBuilder,private profiles:ProfilesService){}
   ngOnInit(){

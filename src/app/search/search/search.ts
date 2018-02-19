@@ -13,8 +13,8 @@ declare const here:any;
 
 export class Search {
   searchAdv = false;
-  errors:Errors = new Errors();
   isSubmitting = false;
+  errors:Errors = new Errors();
   searchInput:FormControl = new FormControl('',Validators.required);
   constructor(private fb:FormBuilder,private search:SearchService){}
   ngAfterViewInit(){$("#searchInput").focus()}
@@ -22,7 +22,8 @@ export class Search {
   	this.errors = new Errors();
     this.isSubmitting = true;
     const query = this.searchInput.value;
-  	this.search.go(query).subscribe(
+    here(query);}
+  	/*this.search.go(query).subscribe(
       data => {
       	this.searchInput.reset();
       	this.isSubmitting = false;
@@ -30,5 +31,5 @@ export class Search {
       err => {
         here(err,this.errors.errors);
         this.errors = {errors:Object.assign({},this.errors.errors,err)};
-        this.isSubmitting = false;});}
+        this.isSubmitting = false;});}*/
 }

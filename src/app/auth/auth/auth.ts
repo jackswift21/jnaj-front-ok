@@ -15,8 +15,8 @@ declare const here:any;
 export class Auth {
   authType;
   authRole = 'user';
-  errors:Errors = new Errors();
   isSubmitting = false;
+  errors:Errors = new Errors();
   authForm:FormGroup;
   pinCtrl:FormControl;
   constructor(

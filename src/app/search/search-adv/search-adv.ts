@@ -12,14 +12,14 @@ declare const here:any;
 })
 
 export class AdvancedSearch {
-  errors:Errors = new Errors();
-  isSubmitting = false;
 	pLengths = [
     {val:"",label:"Choose length of project"},
     {val:"short",label:"0 - 3 mos"},
     {val:"medium",label:"3 - 6 mos"},
     {val:"fullyear",label:"6 - 12 mos"},
     {val:"longterm",label:"12+ mos"}];
+  isSubmitting = false;
+  errors:Errors = new Errors();
   searchForm:FormGroup;
   constructor(private fb:FormBuilder,private search:SearchService){}
   ngOnInit(){

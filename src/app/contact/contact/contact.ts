@@ -19,8 +19,8 @@ export class Contact {
     {val:'suggestion',label:'Feedback/Suggestion'},
     {val:'advertise',label:'Advertise With Us'},
     {val:'invest',label:'Invest In Us'}];
-  errors:Errors = new Errors();
   isSubmitting = false;
+  errors:Errors = new Errors();
   contactForm:FormGroup;
   constructor(
     private route:ActivatedRoute,
@@ -39,12 +39,11 @@ export class Contact {
     this.isSubmitting = true;
     let subject = this.subjects.filter(s => s.val == this.contactForm.value.subject)[0].label;
     const contactMsg = Object.assign({},this.contactForm.value,{subject:subject});
-    here(contactMsg);
+    here(contactMsg);}
     /*this.contact.send(contactMsg,'/contact').subscribe(
       data => this.router.navigateByUrl('/contact/success'),
       err => {
         here(err,this.errors.errors);
         this.errors = {errors:Object.assign({},this.errors.errors,err)};
         this.isSubmitting = false;});}*/
-    }
 }
