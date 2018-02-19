@@ -27,21 +27,17 @@ export class SamplePlayground {
       'html':[this.htmlSample],
       'css':[this.cssSample],
       'tests':[''],});}
-  runTests(){}
   runSample(){
-    this.errors = new Errors();
-    this.isSubmitting = true;
+  	const sample = this.sampleForm.value;
     this.showSample = true;
-    window.scrollTo(0,0);
     this.ref.detectChanges();
-    const sample = this.sampleForm.value;
-    here(sample);
     this.loadSampleAPI(sample);}
   loadSampleAPI(sample:any):Promise<any>{
   	return new Promise(done => {
   		sample.css?(() => {this.loadCss(sample.css,false);this.ref.detectChanges()})():null;
   		sample.html?(() => {$('#sampleSandbox').html(sample.html);this.ref.detectChanges()})():null;
   		this.loadScript(sample.js,false);
+  		window.scrollTo(0,0);
   		done(true);})
   	.catch(err => {
   		here(err);
@@ -68,4 +64,19 @@ export class SamplePlayground {
     $('#sampleSandbox').append(script);
     return script;}
   backToPlayground(){this.showSample = false;this.isSubmitting = false;}
+  runTests(){}
+  saveSample(){
+  	this.errors = new Errors();
+    this.isSubmitting = true;
+    const sample = this.sampleForm.value;
+    here(sample);}
+  	/*this.samples.save(query).subscribe(
+      data => {
+        this.sampleForm.reset();
+        this.isSubmitting = false;
+        here(data.results)},
+      err => {
+        here(err,this.errors.errors);
+        this.errors = {errors:Object.assign({},this.errors.errors,err)};
+        this.isSubmitting = false;});}*/
 }
