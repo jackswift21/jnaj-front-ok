@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {FormGroup,FormControl,FormBuilder,Validators} from '@angular/forms';
 import {Errors} from '../../shared';
-import {SearchService} from '../providers';
+import {SearchService} from '../_providers';
 declare const $:any;
 declare const here:any;
 

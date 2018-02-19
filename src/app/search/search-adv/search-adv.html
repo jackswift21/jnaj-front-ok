@@ -1,33 +1,44 @@
 <!--errors-list [errors]="errors"></errors-list-->
 <form [formGroup]="searchForm" (ngSubmit)="searchJack()">
 <fieldset [disabled]="isSubmitting">
-<p><input class="w3-input" forControlName="frameworks" placeholder="Enter the needed languages and/or frameworks"
-	oninvalid="this.setCustomValidity('You must specify at least one language or framework')"
-	oninput="setCustomValidity('')"></p>
-<p><input class="w3-input" formControlName="focus" placeholder="Enter candidate focus (i.e. FullStack, Design, Security...)"></p>
-<p><input class="w3-input" formControlName="skills" placeholder="Enter any skills you'd like candidates to have"></p>
-<p><label for="education">Experience</label><br>
-	<span class="sliderDiv">
-	<input type="range" min="0" max="11" value="1" step="1" class="slider" id="myRange" 
-	(change)="setExperience($event.target.value)"></span>
-	<input class="w3-input-number" formControlName="experience" disabled></p>
-<p><label for="education">Formal Education</label><br>
-	<input class="w3-radio" type="radio" formControlName="education" value="N" checked>None
-	<input class="w3-radio" type="radio" formControlName="education" value="B">Bachelor
-	<input class="w3-radio" type="radio" formControlName="education" value="M">Master
-	<input class="w3-radio" type="radio" formControlName="education" value="D">PhD</p>
 <p>
-	<input class="w3-input" formControlName="location" placeholder="Enter location">
-	<span class="w3-tag">Leave blank if remote or relocation ok</span></p>
+<input class="w3-input" formControlName="frameworks" 
+placeholder="Enter the needed languages and/or frameworks"
+oninvalid="this.setCustomValidity('You must specify at least one language or framework')"
+oninput="setCustomValidity('')"></p>
 <p>
-	<label for="excludeOOC">Exclude Out of Country Candidates</label>
-	<input class="w3-check" type="checkbox" formControlName="excludeOOC"></p>
-<p><label for="pUrgency">Position Urgency</label><br>
-	<input class="w3-radio" type="radio" formControlName="pUrgency" value="immediate" checked>Right Now
-	<input class="w3-radio" type="radio" formControlName="pUrgency" value="next30">Next 30 Days
-	<input class="w3-radio" type="radio" formControlName="pUrgency" value="other">Just Looking For Good Coders</p>
-<p><select class="w3-input" formControlName="pLength"><option *ngFor="let o of pLengths" [value]="o.val">{{o.label}}</option></select></p>
+<input class="w3-input" formControlName="focus" 
+placeholder="Enter candidate focus (i.e. FullStack, Design, Security...)"></p>
 <p>
-	<button class="w3-button w3-blue" type="submit" [disabled]="!searchForm.valid">
-	<i class="fa fa-spinner" style="display:none"></i>
-	<i class="fa fa-search"> </i> SEARCH</button></p></fieldset></form>
+<input class="w3-input" formControlName="skills" 
+placeholder="Enter any skills you'd like candidates to have"></p>
+<p>
+<label for="education">Experience</label><br>
+<span class="sliderDiv">
+<input type="range" min="0" max="11" value="1" step="1" class="slider" id="myRange" 
+(change)="setExperience($event.target.value)"></span>
+<input class="w3-input-number" formControlName="experience"></p>
+<p>
+<label for="education">Formal Education</label><br>
+<input class="w3-radio" type="radio" formControlName="education" value="N" checked>None
+<input class="w3-radio" type="radio" formControlName="education" value="B">Bachelor
+<input class="w3-radio" type="radio" formControlName="education" value="M">Master
+<input class="w3-radio" type="radio" formControlName="education" value="D">PhD</p>
+<p>
+<input class="w3-input" formControlName="location" placeholder="Enter location">
+<span class="w3-tag">Leave blank if remote or relocation ok</span></p>
+<p>
+<label for="excludeOOC">Exclude Out of Country Candidates</label>
+<input class="w3-check" type="checkbox" formControlName="excludeOOC"></p>
+<p>
+<label for="pUrgency">Position Urgency</label><br>
+<input class="w3-radio" type="radio" formControlName="pUrgency" value="immediate" checked>Right Now
+<input class="w3-radio" type="radio" formControlName="pUrgency" value="next30">Next 30 Days
+<input class="w3-radio" type="radio" formControlName="pUrgency" value="other">Just Looking For Good Coders</p>
+<p>
+<select class="w3-input" formControlName="pLength">
+<option *ngFor="let o of pLengths" [value]="o.val">{{o.label}}</option></select></p>
+<p>
+<button class="w3-button w3-blue" type="submit" [disabled]="!searchForm.valid">
+<i class="fa fa-spinner" style="display:none"></i>
+<i class="fa fa-search"> </i> SEARCH</button></p></fieldset></form>

@@ -4,19 +4,8 @@
     <a routerLink="/home" class="w3-bar-item w3-button w3-wide"><strong>J.N.A.J.</strong></a>
     <!-- Right-sided navbar links -->
     <div class="w3-right w3-hide-small">
-      <!--a href="/main#about" class="w3-bar-item w3-button w3-hide-medium">ABOUT</a-->
-      <!--a routerLink="/profiles" class="w3-bar-item w3-button">
-        <i class="fa fa-user"></i> DEVELOPERS</a-->
-      <a routerLink="/search" class="w3-bar-item w3-button">
-        <i class="fa fa-search"></i> SEARCH</a>
-      <a routerLink="/samples" class="w3-bar-item w3-button">
-        <i class="fa fa-th"></i> SAMPLES</a>
-      <!--a routerLink="/pricing" class="w3-bar-item w3-button">
-        <i class="fa fa-usd"></i> PRICING</a-->
-      <a routerLink="/contact" [queryParams]="{subject:'general'}" class="w3-bar-item w3-button">
-        <i class="fa fa-envelope"></i> CONTACT</a>
-      <a routerLink="/signin" class="w3-bar-item w3-button">
-        <i class="fa fa-user-circle"></i> SIGNIN</a></div>
+      <a *ngFor="let n of navMenu" routerLink={{n.link}} [queryParams]="n.query||{}" class="w3-bar-item w3-button">
+        <i [class]="n.icon"> </i> {{n.label}}</a></div>
     <!-- Hide right-floated links on small screens and replace them with a menu icon -->
     <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" (click)="toggle()">
       <i class="fa fa-bars"></i></a>

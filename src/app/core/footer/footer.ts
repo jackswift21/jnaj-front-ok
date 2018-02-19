@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
-import {CoreLayoutService} from '../providers';
+import {CoreLayoutService} from '../_providers';
 declare const $:any;
 declare const here:any;
 //import { User,UserService } from '../../../shared';

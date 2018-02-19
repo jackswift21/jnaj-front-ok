@@ -7,6 +7,13 @@ declare const here:any;
 
 @Injectable()
 export class CoreLayoutService {
+  public navMenu = [
+    {link:"/search",label:'SEARCH',icon:"fa fa-search"},
+    {link:"/samples",label:'SAMPLES',icon:"fa fa-th"},
+    //{link:"/about",label:'ABOUT',icon:"fa fa-info"},
+    //{link:"/pricing",label:'PRICING',icon:"fa fa-usd"},
+    {link:"/contact",label:'CONTACT',query:{subject:'general'},icon:"fa fa-envelope"},
+    {link:"/auth/signin",label:'SIGNIN',icon:"fa fa-user-circle"}];
   private intro = new BehaviorSubject<boolean>(false);
   public isIntro = this.intro.asObservable();
   private sidebar = new BehaviorSubject<boolean>(false);

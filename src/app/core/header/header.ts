@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {CoreLayoutService} from '../providers';
+import {CoreLayoutService} from '../_providers';
 declare const $:any;
 declare const here:any;
 
@@ -11,7 +11,9 @@ declare const here:any;
 
 export class Header {
   isIntro;
+  navMenu;
   constructor(private layout:CoreLayoutService){layout.isIntro.subscribe(b => this.isIntro = b);}
+  ngOnInit(){this.navMenu = this.layout.navMenu;}
   toggle(){this.layout.toggle();}
 }
 

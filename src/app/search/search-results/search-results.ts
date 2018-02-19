@@ -1,5 +1,5 @@
 import {Component,Input} from '@angular/core';
-import {SearchService} from '../providers';
+import {SearchService} from '../_providers';
 declare const $:any;
 declare const here:any;
 

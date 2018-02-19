@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {SharedModule} from '../shared';
 import {ROUTING,COMPONENTS,DIRECTIVES,PIPES} from './routing';
-import {PROVIDERS} from './providers';
+import {PROVIDERS} from './_providers';
 
 @NgModule({
   imports: [SharedModule,ROUTING],

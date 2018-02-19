@@ -1,14 +1,11 @@
 import {ModuleWithProviders} from '@angular/core';
 import {RouterModule,Routes} from '@angular/router';
 import {Home} from './home';
-//import {ArticlePage,SpotlightPage,CommentDiv,MarkdownPipe} from './components';
-//import {ArticleResolver,SpotlightResolver} from './providers';
+//import {HomeResolver} from './_providers';
 
-export const COMPONENTS = [Home];//ArticlePage,SpotlightPage,CommentDiv];
+export const COMPONENTS = [Home];
 export const DIRECTIVES = [];
-export const PIPES = [];//MarkdownPipe];
+export const PIPES = [];
 
 const routes:Routes = [{path:'',component:Home}];
-	//{path:'',component:SpotlightPage,resolve:{spotlight:SpotlightResolver}},
-	//{path:':slug',component:ArticlePage,resolve:{article:ArticleResolver}}];
 export const ROUTING:ModuleWithProviders = RouterModule.forChild(routes);

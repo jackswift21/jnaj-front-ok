@@ -1,0 +1,41 @@
+<!-- Hire Me Page -->
+<div class="w3-container w3-light-grey" style="padding:128px 16px" id="contact">
+<h3 class="w3-center">HIRE JACK</h3>
+<div class="w3-row-padding" style="margin-top:64px">
+<div class="w3-half">
+<form [formGroup]="hireForm" (ngSubmit)="hireJack()">
+<fieldset [disabled]="isSubmitting">
+<p>
+<input class="w3-input" formControlName="name" placeholder="Your Name" autocomplete="name"></p>
+<p>
+<input class="w3-input" formControlName="email" placeholder="Your Email" autocomplete="email"></p>
+<p>
+<input class="w3-input" formControlName="company" placeholder="Your Company's Name" autocomplete="company">
+<span class="w3-tag">Enter none if not applicable</span></p>
+<p>
+<textarea class="w3-input" formControlName="msg" placeholder="Message (Optional)"></textarea></p>
+<p>
+<label for="emailMeBack">Candidate may contact me directly about inquiry</label>
+<input class="w3-check" type="checkbox" formControlName="emailMeBack"></p>
+<p>
+<textarea class="w3-input" formControlName="cpDesc" placeholder="Your Product/Project Description"></textarea></p>
+<p>
+<textarea class="w3-input" formControlName="pDesc" placeholder="Job/Position Description"></textarea></p>
+<p>
+<input class="w3-input" formControlName="pUrl" placeholder="Job/Position Posting Url"/></p>
+<p>
+<input class="w3-input" formControlName="pLoc" placeholder="Job/Position Location">
+<span class="w3-tag">Leave blank if remote or relocation ok</span></p>
+<p>
+<select class="w3-input" formControlName="pLength">
+<option *ngFor="let o of pLengths" [value]="o.val">{{o.label}}</option></select></p>
+<p>
+<label for="pUrgency">Position Urgency</label><br>
+<input class="w3-radio" type="radio" formControlName="pUrgency" value="immediate" checked>Right Now
+<input class="w3-radio" type="radio" formControlName="pUrgency" value="next30">Next 30 Days
+<input class="w3-radio" type="radio" formControlName="pUrgency" value="other">Just Looking For Good Coders</p>
+<p>
+<input class="w3-input" formControlName="frameworks" placeholder="Enter the needed languages and/or frameworks"></p>
+<p>
+<button class="w3-button w3-black" type="button" [disabled]="!hireForm.valid">
+<i class="fa fa-paper-plane"></i> SEND MESSAGE</button></p></fieldset></form></div>

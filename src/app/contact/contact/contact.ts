@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {Router,ActivatedRoute} from '@angular/router';
 import {FormGroup,FormControl,FormBuilder,Validators} from '@angular/forms';
 import {Errors} from '../../shared';
-import {ContactService} from '../providers';
+import {ContactService} from '../_providers';
 declare const $:any;
 declare const here:any;
 

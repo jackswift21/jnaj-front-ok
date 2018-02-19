@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {ProfilesService} from '../providers';
+import {ProfilesService} from '../_providers';
 import {AppState} from '../../';
 declare const $:any;
 declare const here:any;

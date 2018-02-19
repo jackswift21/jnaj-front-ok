@@ -4,18 +4,14 @@ import {About} from './about';
 import {SpecialThanks} from './thanks';
 import {AboutJack} from './jack';
 import {AppFeaturesList} from './features';
-//import {ArticlePage,SpotlightPage,CommentDiv,MarkdownPipe} from './components';
-//import {ArticleResolver,SpotlightResolver} from './providers';
 
-export const COMPONENTS = [About,SpecialThanks,AboutJack,AppFeaturesList];//ArticlePage,SpotlightPage,CommentDiv];
+export const COMPONENTS = [About,SpecialThanks,AboutJack,AppFeaturesList];
 export const DIRECTIVES = [];
-export const PIPES = [];//MarkdownPipe];
+export const PIPES = [];
 
 const routes:Routes = [
 	{path:'',component:About},
 	{path:'thanks',component:SpecialThanks},
 	{path:'jack',component:AboutJack},
 	{path:'features',component:AppFeaturesList}];
-	//{path:'',component:SpotlightPage,resolve:{spotlight:SpotlightResolver}},
-	//{path:':slug',component:ArticlePage,resolve:{article:ArticleResolver}}];
 export const ROUTING:ModuleWithProviders = RouterModule.forChild(routes);

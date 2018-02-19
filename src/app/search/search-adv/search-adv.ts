@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {FormGroup,FormControl,FormBuilder,Validators} from '@angular/forms';
 import {Errors} from '../../shared';
-import {SearchService} from '../providers';
+import {SearchService} from '../_providers';
 declare const $:any;
 declare const here:any;
 
@@ -20,7 +20,6 @@ export class AdvancedSearch {
     {val:"medium",label:"3 - 6 mos"},
     {val:"fullyear",label:"6 - 12 mos"},
     {val:"longterm",label:"12+ mos"}];
-	experienceSlider;
   searchForm:FormGroup;
   constructor(private fb:FormBuilder,private search:SearchService){}
   ngOnInit(){
@@ -28,23 +27,22 @@ export class AdvancedSearch {
       'frameworks':['',Validators.required],
       'focus':[''],
       'skills':[''],
-      'education':[''],
-      'experience':[''],
+      'education':['N'],
+      'experience':['1 Year'],
       'location':[''],
       'excludeOOC':[''],
       'pLength':[''],
-      'pUrgency':['']});}
-  ngAfterViewInit(){
-  	this.experienceSlider = $("#myRange");
-  	this.setExperience(this.experienceSlider.val());}
+      'pUrgency':['immediate']});
+    this.searchForm.get('experience').disable();}
   setExperience(n){this.searchForm.controls.experience.setValue(this.numOfYrs(n));}
   numOfYrs(n){return n==0?'None':n==1?('1 Year'):n<11?(n+ ' Years'):'10+ Years';}
   searchJack(){
     this.errors = new Errors();
     this.isSubmitting = true;
-    const query = this.searchForm.value;
-    here(query);
-    this.search.go(query).subscribe(
+    const query = Object.assign({},this.searchForm.value,{
+      experience:this.searchForm.controls.experience.value});
+    here(query);}
+    /*this.search.go(query).subscribe(
       data => {
         this.searchForm.reset();
         this.isSubmitting = false;
@@ -52,5 +50,5 @@ export class AdvancedSearch {
       err => {
         here(err,this.errors.errors);
         this.errors = {errors:Object.assign({},this.errors.errors,err)};
-        this.isSubmitting = false;});}
+        this.isSubmitting = false;});}*/
 }

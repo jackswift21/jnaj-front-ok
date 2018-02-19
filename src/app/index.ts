@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {APP_BASE_HREF} from '@angular/common'; 
 import {SharedModule} from './shared';
 import {CoreLayoutModule} from './core';
 import {App} from './app';
@@ -20,6 +21,7 @@ import 'hammerjs';
   	ROUTING],
   providers: [
   	AppState,
+    {provide:APP_BASE_HREF,useValue:'/'},
   	{provide:UrlSerializer,useClass:CustomUrlSerializer}],
   bootstrap: [App],
 })

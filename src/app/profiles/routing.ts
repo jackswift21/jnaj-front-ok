@@ -2,21 +2,16 @@ import {ModuleWithProviders} from '@angular/core';
 import {RouterModule,Routes} from '@angular/router';
 import {Profiles} from './profiles';
 import {ProfileForm} from './profile-form';
-//import {ArticlePage,SpotlightPage,CommentDiv,MarkdownPipe} from './components';
-import {ProfilesResolver} from './providers';
+import {ProfilesResolver} from './_providers';
 
-export const COMPONENTS = [Profiles,ProfileForm];//ArticlePage,SpotlightPage,CommentDiv];
+export const COMPONENTS = [Profiles,ProfileForm];
 export const DIRECTIVES = [];
-export const PIPES = [];//MarkdownPipe];
+export const PIPES = [];
 
 const routes:Routes = [
 	{path:'',component:Profiles},
+	{path:'new',component:ProfileForm,data:{isNew:true}},
 	//{path:':id',component:Profile},
 	{path:':id/update',component:ProfileForm,data:{isNew:false}},
-	{path:':id/settings',component:ProfileForm,data:{isNew:false}},
-	{path:':id/hire',loadChildren:'../hire#HireModule'},
-	{path:'new',component:ProfileForm,data:{isNew:true}},
-	];
-	//{path:'',component:SpotlightPage,resolve:{spotlight:SpotlightResolver}},
-	//{path:':slug',component:ArticlePage,resolve:{article:ArticleResolver}}];
+	{path:':id/settings',component:ProfileForm,data:{isNew:false}}];
 export const ROUTING:ModuleWithProviders = RouterModule.forChild(routes);

@@ -8,10 +8,10 @@ import {AppState} from './app.state';
 })
 
 export class App {
-  title = 'app';
   constructor(private state:AppState){}
   ngOnInit(){this.state.initialize();}
-  //analyzethis;
-  //this.analyzethis = new AnalyzeThis('ok')
-}
+ }
+
+//analyzethis;
+//this.analyzethis = new AnalyzeThis('ok')
 
