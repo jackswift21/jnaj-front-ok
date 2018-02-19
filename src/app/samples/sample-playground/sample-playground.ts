@@ -26,7 +26,8 @@ export class SamplePlayground {
       'js':[this.jsSample,Validators.required],
       'html':[this.htmlSample],
       'css':[this.cssSample],
-      'tests':[''],});}
+      'tests':[''],
+    	'title':['',Validators.required]});}
   runSample(){
   	const sample = this.sampleForm.value;
     this.showSample = true;
