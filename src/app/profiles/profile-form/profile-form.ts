@@ -19,6 +19,9 @@ export class ProfileForm {
     {val:"medium",label:"3 - 6 mos"},
     {val:"fullyear",label:"6 - 12 mos"},
     {val:"longterm",label:"12+ mos"}];
+  picUploaded;
+  openPicUpload(){}
+  getUserLocation(){}
 	experienceSlider;
 	errors:Errors = new Errors();
   isSubmitting = false;
