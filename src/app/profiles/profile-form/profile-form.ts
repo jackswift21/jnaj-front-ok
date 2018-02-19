@@ -20,7 +20,7 @@ export class ProfileForm {
     {val:"fullyear",label:"6 - 12 mos"},
     {val:"longterm",label:"12+ mos"}];
   picUploaded;
-  openPicUpload(){}
+  openUploadPic(){}
   getUserLocation(){}
 	experienceSlider;
 	errors:Errors = new Errors();
