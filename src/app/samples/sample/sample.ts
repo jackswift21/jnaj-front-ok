@@ -13,7 +13,7 @@ export class Sample {
 	loadAPI: Promise<any>;
 	str = `(function(sandbox){
 		var newDiv = document.createElement('div');
-		newDiv.innerHTML = '<p>SAMPLE SANDBOX WORKS</p>';
+		newDiv.innerHTML = '<p class="w3-large w3-text-green"><b>SAMPLE SANDBOX WORKS</b></p>';
 		sandbox.appendChild(newDiv);
 		console.log("ok bro");
 		})(document.getElementById('sampleSandbox'));`;
