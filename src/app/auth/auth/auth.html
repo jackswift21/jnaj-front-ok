@@ -17,12 +17,16 @@
 <input class="w3-input" formControlName="handle" placeholder="Username" autocomplete="username"/></p>
 <!--oninvalid="this.setCustomValidity('You must specify at least one language or framework')"
 oninput="setCustomValidity('')"-->
-<p>
-<input class="w3-input" type="password" formControlName="password" 
+<p *ngIf='authType=="signin"'>
+<input class="w3-input" type="password" formControlName="pswd" 
 placeholder="Password" autocomplete="new-password"/></p>
-<p *ngIf='authType=="signup"'>
-<input class="w3-input" type="password" formControlName="c_password" 
-placeholder="Confirm Password" autocomplete="new-password"/></p>
+<ng-container *ngIf='authType=="signup"' formGroupName="pswds">
+<p>
+<input class="w3-input" type="password" formControlName="pswd" 
+placeholder="Password" autocomplete="new-password"/></p>
+<p>
+<input class="w3-input" type="password" formControlName="c_pswd" 
+placeholder="Confirm Password" autocomplete="new-password"/></p></ng-container>
 <!--p><input id="pinCtrl" min="0" max="9999" pattern="[0-9]*" type="number" inputmode="numeric" autofocus  
 style="-webkit-text-security:disc;" placeholder="Enter Pin" [formControl]="pinCtrl"/></p-->
 <p>

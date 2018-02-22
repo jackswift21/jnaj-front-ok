@@ -1,0 +1,17 @@
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-32">
+  <button *ngIf="!isIntro" type="button" class="w3-button w3-light-grey" (click)="backToTop()">
+    <i class="fa fa-arrow-up w3-margin-right"></i>To the top</button>
+  <div class="w3-section">
+    <!--div class="w3-xlarge">
+      <i class="fa fa-facebook-official w3-hover-opacity"></i>
+      <i class="fa fa-twitter w3-hover-opacity"></i>
+      <i class="fa fa-linkedin w3-hover-opacity"></i></div-->
+    <div class="w3-medium">
+      <a *ngFor="let n of navMenu" class="w3-margin-left w3-hover-text-green" title="{{n.title}}" 
+        routerLink="{{n.route}}" [queryParams]="n.query">{{n.label}}</a>
+      <p *ngIf="!isIntro">Your use of this site means that you have read and accepted our<br>
+        <a routerLink="/terms" title="Terms" class="w3-hover-text-green">Terms and Conditions</a> and 
+        <a routerLink="/privacy" title="Privacy" class="w3-hover-text-green">Privacy Policy</a>.</p>
+      <p>Layout design by <a href="https://w3schools.com" title="W3CSS" class="w3-hover-text-green">W3CSS</a>.</p>
+      <p>&copy; JackNeedsAJob 2018. All rights reserved.</p></div></div></footer>

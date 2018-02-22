@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {AppState} from './app.state';
+import {AppState,AppNavigationService} from './_providers';
 
 @Component({
   selector: 'jnaj-app',
@@ -8,7 +8,7 @@ import {AppState} from './app.state';
 })
 
 export class App {
-  constructor(private state:AppState){}
+  constructor(private state:AppState,private nav:AppNavigationService){}
   ngOnInit(){this.state.initialize();}
  }
 

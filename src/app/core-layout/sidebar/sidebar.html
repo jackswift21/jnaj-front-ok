@@ -1,0 +1,6 @@
+<!-- Sidebar on small screens when clicking the menu icon -->
+<nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" 
+style="display:none" id="mySidebar">
+<a (click)="toggle()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
+<a *ngFor="let n of navMenu" routerLink="{{n.route}}" [queryParams]="n.query" (click)="toggle()" 
+class="w3-bar-item w3-button">{{n.label}}</a></nav>

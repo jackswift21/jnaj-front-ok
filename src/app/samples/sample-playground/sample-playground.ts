@@ -28,6 +28,9 @@ export class SamplePlayground {
       'css':[this.cssSample],
       'tests':[''],
     	'title':['',Validators.required]});}
+  ngOnDestroy(){
+  	this.detachElement('sampleSandboxCss');
+  	this.detachElement('sampleSandboxJs');}
   runSample(){
   	const sample = this.sampleForm.value;
     this.showSample = true;
@@ -44,27 +47,29 @@ export class SamplePlayground {
   		here(err);
   		$('#sampleSandbox').html(err);});}
   loadCss(src:string,isFile:boolean):HTMLStyleElement{
-	  var cssId = 'sampleCss';  // you could encode the css path itself to generate id..
-		if(!document.getElementById(cssId)){
-	    var head  = document.getElementsByTagName('head')[0];
-	    var css  = document.createElement('style');
-	    css.id   = cssId;
-	    //css.rel  = 'stylesheet';
-	    css.type = 'text/css';
-	    css.innerHTML = src;//'http://website.com/css/stylesheet.css';
-	    css.media = 'all';
-	    head.appendChild(css);
-	  	return css;}}
+		this.detachElement('sampleSandboxCss');
+    let head  = document.getElementsByTagName('head')[0],
+    css  = document.createElement('style');
+    css.id   = 'sampleSandboxCss';
+    //css.rel  = 'stylesheet';
+    css.type = 'text/css';
+    css.innerHTML = src;//'http://website.com/css/stylesheet.css';
+    css.media = 'all';
+    head.appendChild(css);
+  	return css;}
 	loadScript(src:string,isFile:boolean):HTMLScriptElement{
+    this.detachElement('sampleSandboxJs');
     const script = document.createElement('script');
+    script.id = 'sampleSandboxJs';
     script.type = 'text/javascript';
-    isFile?(script.src = src):(script.innerHTML = src);
+    script.innerHTML = src;
     script.async = false;
     script.charset = 'utf-8';
     //this.sampleSandbox.nativeElement.appendChild(script);
     $('#sampleSandbox').append(script);
     return script;}
   backToPlayground(){this.showSample = false;this.isSubmitting = false;}
+  detachElement(id){return document.getElementById(id)?document.getElementById(id).remove():null;}
   runTests(){}
   saveSample(){
   	this.errors = new Errors();

@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ProfilesService} from '../_providers';
-import {AppState} from '../../';
 declare const $:any;
 declare const here:any;
 
@@ -18,9 +17,7 @@ export class Profiles {
 		private route:ActivatedRoute,
 		private _profiles:ProfilesService){}
 	ngOnInit(){
-		this.route.queryParamMap.subscribe(params => {
-			this.query = {...params};
-			here(this.query);});
-		this.profiles = this._profiles.fetchAll();
+		this.route.queryParamMap.subscribe(params => this.query = {...params});//here(this.query);});
+		this._profiles.current.subscribe(profiles => this.profiles = profiles);
 		here(this.profiles);}
 }

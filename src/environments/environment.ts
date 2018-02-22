@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  api_jnaj:"https://api-jnaj-01.herokuapp.com",
+  api_jnaj:"https://api-jnaj-01.herokuapp.com/api/v1",
+  localAPI:"http://localhost:3000/api/v1",
 };

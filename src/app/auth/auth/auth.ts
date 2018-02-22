@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {Router,ActivatedRoute} from '@angular/router';
 import {FormGroup,FormControl,FormBuilder,Validators} from '@angular/forms';
-import {Errors} from '../../shared';
+import {Errors,PasswordValidator} from '../../shared';
 import {AuthService} from '../_providers';
 declare const $:any;
 declare const here:any;
@@ -23,12 +23,9 @@ export class Auth {
     private route:ActivatedRoute,
     private router:Router,
     private fb:FormBuilder,
-    private auth:AuthService,
-    ){}
+    private auth:AuthService){}
   ngOnInit(){
-    this.authForm = this.fb.group({
-      'handle':['',Validators.required],
-      'password':['',Validators.required]});
+    this.authForm = this.fb.group({'handle':['Jack1',Validators.required]});
     //'pin':['9999',[Validators.required,Validators.minLength(4)]]
     //this.pinCtrl = new FormControl(9999);
     this.authType = this.route.snapshot.url[0].path;
@@ -38,14 +35,19 @@ export class Auth {
   toggleAuthControls(){
     if(this.authType == 'signup'){
       this.authForm.addControl('name',this.fb.group({
-        'first':['',[Validators.required]],
-        'last':['',[Validators.required]]}));
-      this.authForm.addControl('email',new FormControl('', Validators.required));
-      this.authForm.addControl('c_password',new FormControl('', Validators.required));
+        'first':['Jack',[Validators.required]],
+        'last':['Swift',[Validators.required]]}));
+      this.authForm.addControl('email',new FormControl('jack1.fu.dz@gmail.com',Validators.required));
+      this.authForm.removeControl('pswd');
+      this.authForm.addControl('pswds',this.fb.group({
+        'pswd':['password',[Validators.required]],
+        'c_pswd':['password',[Validators.required]]},
+        {validator:PasswordValidator.matchPassword}));
       this.authRole === 'admin'?this.authForm.addControl('adminCode',new FormControl()):null;}
     else{
-      let ctrls = ['name','email','adminCode','c_password'];
-      ctrls.forEach(f => this.authForm.controls[f]?this.authForm.removeControl(f):null);}}
+      let ctrls = ['name','email','adminCode','pswds'];
+      ctrls.forEach(f => this.authForm.controls[f]?this.authForm.removeControl(f):null);
+      this.authForm.addControl('pswd',new FormControl('password',Validators.required));}}
   onPinInput(k?:string){
     let p = this.authForm.controls.pin,c = $("#pinCtrl");
     k==null?p.setValue(c.val().toString()):
@@ -54,10 +56,16 @@ export class Auth {
     p.setValue(c.val().toString());}
   doAuth(){
     this.errors = new Errors();
-    this.isSubmitting = true; 
-    const creds = Object.assign({},this.authForm.value,{role:this.authRole.toUpperCase()});
+    this.isSubmitting = true;
+    const creds = Object.assign({},this.authForm.value,{
+      role:this.authRole.toUpperCase(),
+      device:localStorage['jnajDevice']});
+    if(creds.pswds){creds.pswd = creds.pswds.pswd;delete creds.pswds;}
+    here(creds);
     this.auth.attempt(creds,this.authType==='signin'?'/login':'').subscribe(
-      data => here(data),
+      data => {
+        here(data);
+        this.isSubmitting = false;},
         //data.role === 'USER'?this.router.navigateByUrl('/'):
         //data.role === 'VENDOR'?this.router.navigateByUrl('/vendorDash'):
         //data.role === 'ADMIN'?this.router.navigateByUrl('/adminDash'):

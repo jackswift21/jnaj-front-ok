@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot,CanActivate,Router,RouterStateSnapshot} from '@angular/router';
 import {Observable} from 'rxjs';
-//import {UserService} from '../../shared';
+import {AppState} from '../../_providers';
 
 @Injectable()
 export class NoAuthGuard implements CanActivate {
-  //constructor(private router: Router,private user:UserService){}
-  canActivate(route:ActivatedRouteSnapshot,state:RouterStateSnapshot):Observable<boolean>{return Observable.of(true);}
-  //return this.user.auth.take(1).map(bool => !bool);}
+  constructor(private router:Router,private state:AppState){}
+  canActivate(route:ActivatedRouteSnapshot):Observable<boolean>{
+  	return this.state.current.take(1).map(s => !s.isAuth);}
 }

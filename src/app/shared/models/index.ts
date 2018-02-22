@@ -1,4 +1,7 @@
 export * from './errors.model';
+
+export * from './pswd.validator';
+
 //export * from './form-container-config.model';
 
 /*export * from './fu-data-item.model';

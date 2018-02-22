@@ -10,7 +10,7 @@ declare const here:any;
 })
 
 export class SearchResults {
-	newSearch;
+	newSearch = {query:'',results:{profiles:[],samples:[],articles:[]}};
 	constructor(private search:SearchService){}
 	ngOnInit(){this.search.newSearch.subscribe(s => {this.newSearch = s;here(this.newSearch);});}
 }

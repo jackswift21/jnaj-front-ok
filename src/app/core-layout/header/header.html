@@ -1,0 +1,13 @@
+<!-- Header (sit on top) -->
+<header *ngIf="!isIntro" class="w3-top">
+  <div class="w3-bar w3-white w3-card" id="myHeader">
+    <a routerLink="/home" class="w3-bar-item w3-button w3-wide"><strong>J.N.A.J.</strong></a>
+    <!-- Right-sided navbar links -->
+    <div class="w3-right w3-hide-small">
+      <a *ngFor="let n of navMenu" routerLink="{{n.route}}" [queryParams]="n.query" class="w3-bar-item w3-button">
+        <i [class]="n.icon"> </i> {{n.label}}</a></div>
+    <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+    <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" (click)="toggle()">
+      <i class="fa fa-bars"></i></a>
+  </div>
+</header>

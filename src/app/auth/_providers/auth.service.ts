@@ -1,34 +1,38 @@
 import {Injectable} from '@angular/core';
 import {Observable,BehaviorSubject,ReplaySubject} from 'rxjs/Rx';
-import {ApiService} from '../../shared';
-import {AppState} from '../../'
-//import {AppWindowService} from './window.service';
+import {AppState,AppWindowService,ApiService} from '../../_providers';
 //import {ProfilesService} from './profiles.service';
 //import {User,Profile} from '../models';
 declare const here:any;
 
 @Injectable()
 export class AuthService {
-  private authSubject = new ReplaySubject<boolean>(1);
-  public auth = this.authSubject.asObservable();
-  constructor(private api:ApiService,private state:AppState){}
-  //private _window:AppWindowService,
-  //private profiles:ProfilesService){}
+  private _isAuth = new ReplaySubject<boolean>(1);
+  public isAuth = this._isAuth.asObservable();
+  private _authUser = new BehaviorSubject<any>({});
+  public authUser = this._authUser.asObservable();
+  constructor(
+    private state:AppState,
+    private api:ApiService,
+    private win:AppWindowService){}//private profiles:ProfilesService){}
   attempt(user,authRoute):Observable<any>{
-    return Observable.of(this.set(user));}
-    	//this.stamp(user).then(
-      //user => this.api.post('/user'+authRoute,{user:user}).subscribe(
-        //user => this.set(user),err => error(err))));}
+    return this.api.post('/user'+authRoute,{user:user}).map(
+      user => this.set(user),err => here(err));}
+    //return Observable.of(this.stamp(user)).then()
   logout():Observable<any>{return Observable.of('logged out');}
     //return this.api.delete('/user/login').map(
       //loggedOut => this.purge(loggedOut));}
 	set(user){//:User):User{
     console.log(user);
-    //this._window.token = user.token;
-    //this.userSubject.next(new User(user));
-    this.authSubject.next(true);
-
+    this.win.token = user.token;
+    this._authUser.next(user);//new User(user));
+    this._isAuth.next(true);
     return user;}
+}
+
+  //getUsers():Observable<any>{return this.api.get('/users').map(data => data);}
+  //deleteUsers():Observable<any>{return this.api.delete('/users').map(data => data);}
+  //move(m){return this.api.post('/moves',{move:m}).map(data => data.move);}
   /*private userSubject = new BehaviorSubject<User>(new User());
   public user = this.userSubject.asObservable().distinctUntilChanged();
   get me():User{return this.userSubject.getValue();}
@@ -61,8 +65,3 @@ export class AuthService {
   locate():Promise<{}>{return this._window.geolocation.then(loc => loc);}
   //.switchMap(loc => this.api.put('/user',{user:Object.assign({},this.me,{loc:loc})})
   save(item){this._window.save(item);}*/
-}
-
-  //getUsers():Observable<any>{return this.api.get('/users').map(data => data);}
-  //deleteUsers():Observable<any>{return this.api.delete('/users').map(data => data);}
-  //move(m){return this.api.post('/moves',{move:m}).map(data => data.move);}
