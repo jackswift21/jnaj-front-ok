@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {AppEvents} from '../../core';
 
 @Component({
   selector: 'home',
@@ -8,4 +9,6 @@ import { Component } from '@angular/core';
 
 export class Home {
   title = 'app';
+  constructor(private app:AppEvents){}
+  ngOnInit(){this.app.do('testAction');}
 }

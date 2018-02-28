@@ -1,63 +1,52 @@
-/*import { Injectable } from '@angular/core';
-import { Effect, Actions } from '@ngrx/effects';
-import 'rxjs/add/operator/switchMapTo';
-import 'rxjs/add/operator/switchMap';
-// import 'rxjs/add/observable/of';
-import { of } from 'rxjs/observable/of';
-import { GoogleBasicProfile } from './user-profile.model';
-import { UserProfileActions } from './user-profile.actions';
-import { UserProfile } from '../../services/user-profile.service';
-import { Authorization } from '../../services/authorization.service';
+import {Injectable } from '@angular/core';
+import {Effect,Actions} from '@ngrx/effects';
+import {Observable} from 'rxjs/Observable';
+import {JNAJAppState} from '../';
+import {GoogleBasicProfile} from './user-profile.model';
+import * as UserProfileActions from './user-profile.actions';
+//import {UserProfile} from '../../services';//user-profile.service';
+//import {Authorization} from '../../services';//authorization.service';
 
 @Injectable()
 export class UserProfileEffects {
   constructor(
-    private actions$: Actions,
-    private userProfileActions: UserProfileActions,
-    private userProfile: UserProfile,
-    private auth: Authorization) { }
-
-  @Effect()
-  updateToken$ = this.actions$
+    private actions$:Actions,
+    //private userProfile:UserProfile,
+    //private auth:Authorization
+    ){}
+  @Effect() updateToken$ = this.actions$
     .ofType(UserProfileActions.UPDATE_TOKEN)
-    .map(action => action.payload)
-    .map((token: string) => this.auth.accessToken = token)
-    .switchMap(token => this.userProfile.getPlaylists(true)
-      .catch((error: Error) => {
-        console.log('error in fetching user\'s playlists', error);
+    .map((action:UserProfileActions.updateToken) => action.payload)
+    //.map((token: string) => this.auth.accessToken = token)
+    .map(() => Observable.of(new UserProfileActions.test()));
+    /*.switchMap(token => this.userProfile.getPlaylists(true)
+      .catch((error:Error) => {
+        here('error in fetching user\'s playlists', error);
         return of(error);}))
-    .map(response => this.userProfileActions.updateData(response));
-
-  @Effect()
-  addUserPlaylists$ = this.actions$
+    .map(response => new UserProfileActions.updateData(response));*/
+  @Effect() addUserPlaylists$ = this.actions$
     .ofType(UserProfileActions.UPDATE)
-    .map(action => action.payload)
-    .map((data: any) => this.userProfileActions.addPlaylists(data.items));
-
-  @Effect()
-  updateNextPageToken$ = this.actions$
+    .map((action:UserProfileActions.update) => action.payload)
+    .map((data:any) => new UserProfileActions.addPlaylists(data.items));
+  @Effect() updateNextPageToken$ = this.actions$
     .ofType(UserProfileActions.UPDATE)
-    .map(action => action.payload)
+    .map((action:UserProfileActions.update) => action.payload)
     .map(data => {
       const nextPageToken = data.nextPageToken;
       return nextPageToken?
-        this.userProfileActions.updatePageToken(data.nextPageToken):
-        this.userProfileActions.userProfileCompleted();});
-
-  @Effect()
-  getMorePlaylists$ = this.actions$
+        new UserProfileActions.updatePageToken(data.nextPageToken):
+        new UserProfileActions.userProfileCompleted();});
+  @Effect() getMorePlaylists$ = this.actions$
     .ofType(UserProfileActions.UPDATE_NEXT_PAGE_TOKEN)
-    .map(action => action.payload)
-    .switchMap((pageToken: string) => {
+    .map((action:UserProfileActions.updatePageToken) => action.payload)
+    .map(() => Observable.of(new UserProfileActions.test()));
+    /*.switchMap((pageToken:string) => {
       this.userProfile.updatePageToken(pageToken);
       return this.userProfile.getPlaylists(false);})
-    .map(response => this.userProfileActions.updateData(response));
-
-  @Effect()
-  userProfileRecieved$ = this.actions$
+    .map(response => new UserProfileActions.updateData(response));*/
+  @Effect() userProfileRecieved$ = this.actions$
     .ofType(UserProfileActions.USER_PROFILE_RECIEVED)
-    .map(action => action.payload)
-    .map(profile  => this.userProfile.toUserJson(profile))
-    .map((profile: GoogleBasicProfile) => this.userProfileActions.updateUserProfile(profile));
+    .map((action:UserProfileActions.userProfileRecieved) => action.payload)
+    //.map(profile  => this.userProfile.toUserJson(profile))
+    .map((profile:GoogleBasicProfile) => new UserProfileActions.updateUserProfile(profile));
 }
-*/

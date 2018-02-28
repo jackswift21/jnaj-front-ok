@@ -1,0 +1,14 @@
+<ng-template #suggestionsTplRef>
+  <section *ngIf="showSuggestions">
+    <div class="typeahead-backdrop" (click)="toggleSuggestions(false)"></div>
+    <button type="button" *ngFor="let result of results;let i = index;" 
+    	class="w3-tag w3-btn" style="margin-right:2px;margin-bottom:2px;position:relative"
+    	[class.hovered]="markIsActive(result,i)"
+    	(mouseenter)="toggleIsActiveOnHover(results,i,true)"
+      (mouseleave)="toggleIsActiveOnHover(results,i,false)"
+      (click)="handleSelectSuggestion(result)">
+      <span *ngIf="!taItemTemplate"><i class="fa fa-plus"> </i> {{result}}</span>
+      <ng-template
+        [ngTemplateOutlet]="taItemTemplate" 
+        [ngTemplateOutletContext]="{$implicit:{result:result,index:i}}">
+        </ng-template></button></section></ng-template>

@@ -13,7 +13,7 @@ declare const here:any;
 })
 
 export class Auth {
-  authType;
+  /*authType;
   authRole = 'user';
   isSubmitting = false;
   errors:Errors = new Errors();
@@ -73,5 +73,5 @@ export class Auth {
       err => {
         here(err,this.errors.errors);
         this.errors = {errors:Object.assign({},this.errors.errors,err)};
-        this.isSubmitting = false;});}
+        this.isSubmitting = false;});}*/
 }

@@ -3,14 +3,25 @@
 <h3 class="w3-center">SEARCH JACK</h3>
 <div class="w3-row-padding" style="margin-top:64px">
 <div class="w3-half">
-<p><a href="Javascript:void(0)" (click)="searchAdv=!searchAdv">
+<p><a href="Javascript:void(0)" (click)="app.do('toggleAdvSearch')">
 	{{searchAdv?'Back to Simple':'Use Advanced'}} Search</a></p>
 <!--errors-list [errors]="errors"></errors-list-->
 <form *ngIf='!searchAdv'>
-	<p><input id="searchInput" class="w3-input" [formControl]="searchInput" 
-		placeholder="Search J.N.A.J."></p>
-	<p><button class="w3-button w3-blue" type="button" 
+	<p><input id="searchInput" class="w3-input" 
+		 placeholder="Search J.N.A.J." [formControl]="searchInput" typeahead 
+		 (taSelected)="addQueryTag($event)" 
+		 (taAddSuggestion)="addSuggestion($event)" 
+		 (taGetSuggestions)="getSuggestions($event)" 
+		 (taClearSuggestions)="clearSuggestions()" 
+		 [taSuggestions]="suggestions"
+		 [taShowSuggestionsOnFocus] = "showSuggestionsOnFocus"
+		type="search" autocomplete="off"></p>
+		<!--(input)="onQueryChange(searchInput.value)" [value]="query.query"-->
+	<button class="w3-badge w3-blue" type="button" 
+	*ngFor="let q of queryTags" (click)="removeQueryTag(q)">{{q}} ×</button>
+	<p><button class="w3-button w3-green" type="button" 
 		[disabled]="!searchInput.valid" (click)="searchJack()">
+		<!--i class="fa fa-circle-o-notch fa-spin"> </i--> 
 		<i class="fa fa-search"> </i> SEARCH</button></p></form>
 <search-adv *ngIf='searchAdv'></search-adv></div>
-<search-results></search-results></div></div>
+<search-results [query]="query" [results]="results"></search-results></div></div>

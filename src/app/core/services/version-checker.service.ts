@@ -2,11 +2,11 @@ import {Injectable,NgZone} from '@angular/core';
 import {Http} from '@angular/http';
 import {Observable,Subscription} from 'rxjs';
 import {Store} from '@ngrx/store';
-import {JNAJAppState} from '../../app.store';
-import {LayoutActions} from '../actions/layout.actions';
-import 'rxjs/add/operator/retry';
-import 'rxjs/add/observable/timer';
-import 'rxjs/add/observable/of';
+import {JNAJAppState} from '../store';
+import {AppVersion} from '../store/layout/layout.model';
+import * as layout from '../store/layout/layout.actions';
+import {AppWindowService} from './window.service';
+declare const here:any;
 
 @Injectable()
 export class VersionCheckerService {
@@ -21,24 +21,41 @@ export class VersionCheckerService {
     private http:Http,
     private zone:NgZone,
     private store:Store<JNAJAppState>,
-    private layoutActions:LayoutActions){}
-  check(){return this.http.get(this.url);}
+    private win:AppWindowService){}
   start(){
-    let checkTimer: Subscription;
+    let checkTimer:Subscription;
     this.zone.runOutsideAngular(() => {
       checkTimer = Observable.timer(0,this.interval)
-        .switchMap(() => this.check())
+        .switchMap(() => this.http.get(this.url))
         .catch(err => {here(err);return Observable.of(err);})
         .retry()
         .filter(res => res && res.status === 200)
-        .subscribe(res => this.store.dispatch(this.layoutActions.recievedAppVersion(res.json())));});
+        .subscribe(res => this.store.dispatch(new layout.getVersion(res.json())));});
     return checkTimer;}
-  updateVersion(){if(window){window.location.reload(true);}}
   checkForVersion(){
-    return this.check()
+    return this.http.get(this.url)
       .retry()
       .filter(res => res && res.status === 200)
       .take(1)
       .subscribe(this.notifyNewVersion.bind(this));}
-  notifyNewVersion(res){this.store.dispatch(this.layoutActions.recievedAppVersion(res.json()));}
+      //.catch(err => {here(err);return Observable.of(err);});}
+  notifyNewVersion(res){this.store.dispatch(new layout.getVersion(res.json()));} 
+  getVersion(current:AppVersion,packageJson:any){
+    const currentVersion = current.semver;
+    const remoteVersion = packageJson.version;
+    const version:AppVersion = {
+      semver:'',
+      isNewAvailable:current.isNewAvailable,
+      checkingForVersion:false};
+    const isCurrentVersionEmpty = '' === currentVersion;
+    const isCurrentDifferentFromRemote = !isCurrentVersionEmpty && currentVersion !== remoteVersion;
+    if(isCurrentVersionEmpty){version.semver = remoteVersion;}
+    if(isCurrentDifferentFromRemote && !version.isNewAvailable){
+      version.semver = currentVersion;
+      version.isNewAvailable = true;}
+    else{
+      version.semver = remoteVersion;
+      version.isNewAvailable = false;}
+    this.store.dispatch(new layout.receivedVersion(version));}
+  updateVersion(){this.win.refresh(true);}
 }

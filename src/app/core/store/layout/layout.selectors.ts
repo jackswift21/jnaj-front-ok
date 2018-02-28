@@ -1,8 +1,9 @@
-import {Observable} from 'rxjs/Observable';
+import {createFeatureSelector,createSelector} from '@ngrx/store';
 import {AppSettings} from './layout.model';
-import {JNAJAppState} from '../store';
 
-export function $getLayout($s:Observable<JNAJAppState>):Observable<AppSettings>{return $s.select(s => s.layout);}
-export function $getVersion($s:Observable<JNAJAppState>):Observable<any>{return $s.select(s => s.layout.version);}
-export function $getSidebarOpen($s:Observable<AppSettings>){return $s.select(s => s.sidebarOpen);}
-
+export const getLayout$ = createFeatureSelector<AppSettings>('layout');
+export const getVersion$ = createSelector(getLayout$,(s:AppSettings) => s.version);
+export const getSidebarOpen$ = createSelector(getLayout$,(s:AppSettings) => s.sidebarOpen);
+export const getMainNav$ = createSelector(getLayout$,(s:AppSettings) => s.mainNav);
+export const getFooterNav$ = createSelector(getLayout$,(s:AppSettings) => s.footerNav);
+export const isIntro$ = createSelector(getLayout$,(s:AppSettings) => s.isIntro);

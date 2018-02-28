@@ -2,8 +2,7 @@ import { animate, state, style, transition, trigger,keyframes } from '@angular/c
 
 interface IfadeOutAnimation {
   duration?: string;
-  animationTimingFunction?: string;
-}
+  animationTimingFunction?: string;}
 
 export function Block(duration:number,timing:string){
   const animationRule = [duration+'s',timing].join(' ');

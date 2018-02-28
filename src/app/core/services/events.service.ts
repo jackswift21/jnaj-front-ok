@@ -1,68 +1,78 @@
-import { Injectable,} from '@angular/core';
-import { Store } from '@ngrx/store';
-import { FuState } from '../store';
-import { LayoutActions } from '../store/layout';
-//import { SearchActions } from '../store/search';
-//import { AlertActions } from '../store/alert';
-//import { FormsActions } from '../store/forms';
-//import { VendorsActions  } from '../store/vendors';
-//import { UserProfileActions } from '../store/user-profile';
-//import { MapActions } from '../store/map';
-//import { NavigationActions } from '../store/navigation';
+import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
+import {Store} from '@ngrx/store';
+import {
+	JNAJAppState,
+	SamplesActions as samples,
+	SearchActions as search,
+	LayoutActions as layout,
+	NavigationActions as navigation,
+	UserProfileActions as userProfile,
+	//AlertActions as alert,
+	//FormsActions as forms,
+	//VendorsActions as vendors,
+	//JNAJMapActions as jMap
+} from '../store';
+declare const here:any;
 
 @Injectable()
-export class AppEvents { 
-	/*constructor(
-		//private router:Router,
-		private store:Store<FuState>,
-		private layout:LayoutActions,
-		private navigation:NavigationActions,
-		private search:SearchActions,
-		private alert:AlertActions,
-		private forms:FormsActions,
-		private vendors:VendorsActions,
-		private user:UserProfileActions,
-		private fuMap:MapActions){}
-	emit(action:string,payload?:any){
+export class AppEvents {
+	constructor(private router:Router,private store:Store<JNAJAppState>){}
+	do(action:string,payload?:any){
 		this.store.dispatch(this[action]?
-			this[action](payload):this.noAction(action));}
-	loadMap = (p) => this.fuMap.loadMap(p);
-	//updateVersion = () => this.layout.updateVersion();
-	//checkVersion = () => this.layout.checkVersion();
-	toggleSidebar = () => this.layout.toggleSidebar();
-	updHeaderMain = (p) => this.layout.updateHeaderMain(p);
-	showAlert = (p) => this.alert.showAlert(p);
-	hideAlert = () => this.alert.hideAlert();
-	confirmAlert = () => this.alert.confirmAlert();
-	toggleForm = (p) => this.forms.toggleForm(p);
-	cancelForm = () => this.forms.cancelForm();
-	submitForm = (p) => this.forms.submitForm(p);
-	createVendor = () => this.forms.toggleForm('vendor-profile');
-	editVendor = () => this.forms.toggleForm('edit-vendor-profile');
-	getXY = () => this.forms.toggleForm('getXY');
-	signin = () => this.forms.toggleForm('signin');
-	searchQ = (p) => this.search.searchNewQuery(p);
-	searchMore = () => this.search.searchMoreForQuery();
-	resetPgTkn = () => this.search.resetPageToken();
-	updateParam = (p) => this.search.updateQueryParam(p);
-	locateUser = () => this.user.loadLocation();
-	signout = () => this.user.signOut();
-	loadVendors = () => this.vendors.loadVendors();
-	loadVendor = (p) => this.vendors.loadVendor(p);
-	loadReviews = () => this.vendors.loadReviews();
-	loadOrders = () => this.vendors.loadOrders();
-	deleteVendor = () => this.vendors.deleteVendorAcct();
-	deleteAll = () => this.vendors.deleteAll();
-	fave = () => this.vendors.faveVendor();
-	unfave = () => this.vendors.unfaveVendor();
-	like = () => this.vendors.likeVendor();
-	unlike = () => this.vendors.unlikeVendor();
-	rate = (p) => this.vendors.rateVendor(p);
-	goBack = () => this.navigation.goBack();
-	navStart = (p) => this.navigation.start(p);
-	navComplete = (p) => this.navigation.complete(p);
-	showHistory = () => this.navigation.showHistory();
-	noAction = (a) => {
-		console.log('ACTION NOT FOUND IN APP EVENTS:',a);
-		return {type:'ACTION NOT FOUND IN APP EVENTS',payload:a}};*/
+			this[action](payload):
+			this.noAction(action));}
+	showJavaSamples = () => new samples.LoadJavaSamples();
+	showAngularSamples = () => new samples.LoadAngularSamples();
+	showFavoriteSamples = (p) => new samples.LoadFavoriteSamples(p);
+	updateQuery = (p) => new search.updateCurrentQuery(p);
+	updateSuggestions = (p) => new search.updateSuggestions(p);
+	getSuggestions = (p) => new search.getSuggestions(p);
+	addSuggestion = (p) => new search.addSuggestion(p);
+	searchQuery = (p) => new search.searchCurrentQuery();
+	searchMore = () => new search.searchMoreForQuery();
+	resetPgTkn = (p) => new search.resetPageToken(p);
+	updateParam = (p) => new search.updateQueryParam(p);
+	toggleAdvSearch = () => new search.toggleAdvSearch();
+	toggleSidebar = () => new layout.toggleSidebar();
+	closeSidebar = () => new layout.closeSidebar();
+	toggleIsIntro = (p) => new layout.toggleIsIntro(p);
+	checkVersion = () => new layout.checkVersion();
+	getVersion = (p) => new layout.getVersion(p);
+	receivedVersion = (p) => new layout.receivedVersion(p);
+	updateVersion = () => new layout.updateVersion();
+	go = (p) => new navigation.go(p);
+	back = () => new navigation.back();
+	forward = () => new navigation.forward();
+	//navStart = (p) => new navigation.start(p);
+	//navComplete = (p) => new navigation.complete(p);
+	//history = () => new navigation.history();
+	noAction = (a) => {return {type:'ACTION_NOT_FOUND',payload:a}};
 }
+
+/*loadMap = (p) => new fuMap.loadMap(p);
+	updHeaderMain = (p) => new layout.updateHeaderMain(p);
+	showAlert = (p) => new alert.showAlert(p);
+	hideAlert = () => new alert.hideAlert();
+	confirmAlert = () => new alert.confirmAlert();
+	toggleForm = (p) => new forms.toggleForm(p);
+	cancelForm = () => new forms.cancelForm();
+	submitForm = (p) => new forms.submitForm(p);
+	createVendor = () => new forms.toggleForm('vendor-profile');
+	editVendor = () => new forms.toggleForm('edit-vendor-profile');
+	getXY = () => new forms.toggleForm('getXY');
+	signin = () => new forms.toggleForm('signin');
+	locateUser = () => new user.loadLocation();
+	signout = () => new user.signOut();
+	loadVendors = () => new vendors.loadVendors();
+	loadVendor = (p) => new vendors.loadVendor(p);
+	loadReviews = () => new vendors.loadReviews();
+	loadOrders = () => new vendors.loadOrders();
+	deleteVendor = () => new vendors.deleteVendorAcct();
+	deleteAll = () => new vendors.deleteAll();
+	fave = () => new vendors.faveVendor();
+	unfave = () => new vendors.unfaveVendor();
+	like = () => new vendors.likeVendor();
+	unlike = () => new vendors.unlikeVendor();
+	rate = (p) => new vendors.rateVendor(p);
+	*/

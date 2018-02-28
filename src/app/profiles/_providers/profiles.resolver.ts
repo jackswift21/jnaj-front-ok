@@ -16,7 +16,7 @@ export class ProfilesResolver implements Resolve<any> {
   	here(route);
     return this.profiles.fetchAll().catch(err => 
     	this.router.navigateByUrl('/home'));}*/
-  resolve(route:ActivatedRouteSnapshot,state:RouterStateSnapshot):Observable<any>{
-    return this.profiles.fetch(route.params['id']).catch(err => 
-    	this.router.navigateByUrl('/home'));}
+  resolve(route:ActivatedRouteSnapshot,state:RouterStateSnapshot):Observable<any>{return Observable.of([]);}
+    //return this.profiles.fetch(route.params['id']).catch(err => 
+    	//this.router.navigateByUrl('/home'));}
 }

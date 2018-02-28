@@ -1,5 +1,4 @@
 import {Component,Input} from '@angular/core';
-import {SearchService} from '../_providers';
 declare const $:any;
 declare const here:any;
 
@@ -10,7 +9,6 @@ declare const here:any;
 })
 
 export class SearchResults {
-	newSearch = {query:'',results:{profiles:[],samples:[],articles:[]}};
-	constructor(private search:SearchService){}
-	ngOnInit(){this.search.newSearch.subscribe(s => {this.newSearch = s;here(this.newSearch);});}
+	@Input() query:string = '';
+	@Input() results:any[] = [];
 }

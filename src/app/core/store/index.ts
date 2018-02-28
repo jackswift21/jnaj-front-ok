@@ -1,58 +1,36 @@
-import { EffectsModule } from '@ngrx/effects';
-import { Observable } from 'rxjs/Observable';
+import {ActionReducerMap,ActionReducer,MetaReducer} from '@ngrx/store';
+import {environment} from '../../../environments/environment';
 
-//import { item,ItemState,ItemActions,ItemEffects } from './items';
-//import { player,VideoPlayerState,VideoPlayerActions,VideoPlayerEffects } from './video-player';
-//import { nowPlaylist,NowPlaylistInterface,NowPlaylistActions,NowPlaylistEffects } from './now-playlist';
-//import { user,UserProfile,UserProfileActions,UserProfileEffects } from './user-profile';
-//import { search,Search,SearchActions,SearchEffects } from './search';
-import {layout,AppSettings,LayoutActions,LayoutEffects} from './layout';
-//import { vendor,VendorState,VendorActions,VendorEffects } from './vendors';
+import {SamplesActions,SamplesState,samplesReducer} from './samples';
+export {SamplesActions,SamplesState};
+import {LayoutActions,AppSettings,layoutReducer,LayoutEffects} from './layout';
+export {LayoutActions,AppSettings};
+import {NavigationActions,NavigationEffects} from './navigation';
+export {NavigationActions};
+import {SearchActions,Search,searchReducer,SearchEffects} from './search';
+export {SearchActions,Search};
+import {UserProfileActions,UserProfile,userProfileReducer,UserProfileEffects} from './user-profile';
+export {UserProfileActions,UserProfile};
 
 export interface JNAJAppState {
-  layout:AppSettings;
-}
-
-  //item:ItemState;
-  //player:VideoPlayerState;
-  //nowPlaylist:NowPlaylistInterface;
-  //user:UserProfile;
-  //search:Search;
-  //vendor:VendorState;
-export let JNAJReducers = {
-  //player,
-  //nowPlaylist,
-  //user,
-  //search,
-  layout,
-  //item
-};
-export let JNAJActions = [
-  //ItemActions,
-  //VideoPlayerActions,
-  //NowPlaylistActions,
-  //UserProfileActions,
-  //SearchActions,
-  LayoutActions,
-  //VendorActions
-];
+	samples:SamplesState;
+	layout:AppSettings;
+	search:Search;
+	userProfile:UserProfile;}
+export const reducers:ActionReducerMap<JNAJAppState> = {
+  samples:samplesReducer,
+  layout:layoutReducer,
+  search:searchReducer,
+  userProfile:userProfileReducer};
+export const metaReducers:MetaReducer<JNAJAppState>[] = !environment.production?[]:[];//logger
 export const EFFECTS = [
-  //EffectsModule.run(ItemEffects),
-  //EffectsModule.run(VideoPlayerEffects),
-  //EffectsModule.run(NowPlaylistEffects),
-  //EffectsModule.run(UserProfileEffects),
-  //EffectsModule.run(SearchEffects),
-  EffectsModule.run(LayoutEffects),
-  //EffectsModule.run(VendorEffects)
-];
-//export function getPlayerSearch$(state$: Observable<FooState>):Observable<Search>{
-  //return state$.select(state => state.search);};
-//export function getPlayerSearchResults$ (state$: Observable<FooState>): Observable<any[]> {
-  //return state$.select(state => state.search.results);};
-export function $getAppLayout($s:Observable<JNAJState>):Observable<AppSettings>{return $s.select(s => s.appLayout);};
-//export function getNowPlaylist$ ($state: Observable<FooState>): Observable<NowPlaylistInterface> {
-  //return $state.select(state => state.nowPlaylist);};
-//export function getItem$ ($state: Observable<FooState>): Observable<ItemState> {
-  //return $state.select(state => state.item);};
+  LayoutEffects,
+  SearchEffects,
+  UserProfileEffects,
+  NavigationEffects];
 
-function getMyState(s){console.log(s);return s.assignment;}
+export function logger(reducer:ActionReducer<JNAJAppState>):ActionReducer<JNAJAppState> {
+  return function(state:JNAJAppState,action:any):JNAJAppState {
+    console.log('state',state);
+    console.log('action',action);
+    return reducer(state,action);};}

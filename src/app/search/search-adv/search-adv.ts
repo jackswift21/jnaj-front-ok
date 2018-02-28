@@ -1,7 +1,10 @@
-import {Component} from '@angular/core';
+import {Component,Output,EventEmitter} from '@angular/core';
 import {FormGroup,FormControl,FormBuilder,Validators} from '@angular/forms';
+import {Observable} from 'rxjs/Observable';
+import {Store} from '@ngrx/store';
+import {AppEvents} from '../../core';
+import {Search,getQuery$,getResults$,getErrorInSearch$} from '../../core/store/search';
 import {Errors} from '../../shared';
-import {SearchService} from '../_providers';
 declare const $:any;
 declare const here:any;
 
@@ -12,6 +15,8 @@ declare const here:any;
 })
 
 export class AdvancedSearch {
+  @Output() query = new EventEmitter<string>();
+  @Output() results = new EventEmitter<any[]>();
 	pLengths = [
     {val:"",label:"Choose length of project"},
     {val:"short",label:"0 - 3 mos"},
@@ -21,7 +26,19 @@ export class AdvancedSearch {
   isSubmitting = false;
   errors:Errors = new Errors();
   searchForm:FormGroup;
-  constructor(private fb:FormBuilder,private search:SearchService){}
+  constructor(
+    private fb:FormBuilder,
+    private store:Store<Search>,
+    private app:AppEvents){
+    store.select(getQuery$).subscribe(q => this.query.emit(q));
+    store.select(getResults$).subscribe(results => {
+      //this.searchInput.reset();
+      this.results.emit(results);
+      this.isSubmitting = false;});
+    store.select(getErrorInSearch$).subscribe(err => {
+      here(err,this.errors.errors);
+      this.errors = {errors:Object.assign({},this.errors.errors,err)};
+      this.isSubmitting = false;});}
   ngOnInit(){
     this.searchForm = this.fb.group({
       'frameworks':['',Validators.required],
@@ -34,21 +51,12 @@ export class AdvancedSearch {
       'pLength':[''],
       'pUrgency':['immediate']});
     this.searchForm.get('experience').disable();}
+  ngAfterViewInit(){$('#frameworks').focus();}
   setExperience(n){this.searchForm.controls.experience.setValue(this.numOfYrs(n));}
   numOfYrs(n){return n==0?'None':n==1?('1 Year'):n<11?(n+ ' Years'):'10+ Years';}
   searchJack(){
     this.errors = new Errors();
     this.isSubmitting = true;
-    const query = Object.assign({},this.searchForm.value,{
-      experience:this.searchForm.controls.experience.value});
-    here(query);}
-    /*this.search.go(query).subscribe(
-      data => {
-        this.searchForm.reset();
-        this.isSubmitting = false;
-        here(data.results)},
-      err => {
-        here(err,this.errors.errors);
-        this.errors = {errors:Object.assign({},this.errors.errors,err)};
-        this.isSubmitting = false;});}*/
+    const q = Object.assign({},this.searchForm.value,{experience:this.searchForm.controls.experience.value});
+    this.app.do('searchQuery',q);}
 }

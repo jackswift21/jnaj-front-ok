@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {AppState,AppNavigationService} from './_providers';
 
 @Component({
   selector: 'jnaj-app',
@@ -7,11 +6,7 @@ import {AppState,AppNavigationService} from './_providers';
   styleUrls: ['./app.css']
 })
 
-export class App {
-  constructor(private state:AppState,private nav:AppNavigationService){}
-  ngOnInit(){this.state.initialize();}
- }
-
+export class App {}
+//constructor(private nav:AppNavigationService){}
 //analyzethis;
 //this.analyzethis = new AnalyzeThis('ok')
-

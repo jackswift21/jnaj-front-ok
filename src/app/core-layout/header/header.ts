@@ -1,5 +1,9 @@
 import {Component} from '@angular/core';
-import {CoreLayoutService} from '../_providers';
+import {Observable} from 'rxjs/Observable';
+import {Store} from '@ngrx/store';
+import {AppEvents} from '../../core';
+import {AppSettings,getMainNav$,isIntro$} from '../../core/store/layout';
+import {Errors} from '../../shared';
 declare const $:any;
 declare const here:any;
 
@@ -12,9 +16,12 @@ declare const here:any;
 export class Header {
   isIntro;
   navMenu;
-  constructor(private layout:CoreLayoutService){layout.isIntro.subscribe(b => this.isIntro = b);}
-  ngOnInit(){this.navMenu = this.layout.navMenu;}
-  toggle(){this.layout.toggle();}
+  constructor(
+    private store:Store<AppSettings>,
+    private app:AppEvents){
+    store.select(isIntro$).subscribe(intro => this.isIntro = intro);
+    store.select(getMainNav$).subscribe(nav => this.navMenu = nav);}
+  toggle(){this.app.do('toggleSidebar');}
 }
 
 

@@ -2,7 +2,7 @@
 <form [formGroup]="searchForm" (ngSubmit)="searchJack()">
 <fieldset [disabled]="isSubmitting">
 <p>
-<input class="w3-input" formControlName="frameworks" 
+<input class="w3-input" formControlName="frameworks" id='frameworks'
 placeholder="Enter the needed languages and/or frameworks"
 oninvalid="this.setCustomValidity('You must specify at least one language or framework')"
 oninput="setCustomValidity('')"></p>

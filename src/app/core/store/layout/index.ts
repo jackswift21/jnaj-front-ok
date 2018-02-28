@@ -1,5 +1,6 @@
-export * from './layout.actions';
+import * as LayoutActions from './layout.actions';
+export {LayoutActions};
 export * from './layout.model';
 export * from './layout.reducer';
-export * from './layout.effects';
 export * from './layout.selectors';
+export * from './layout.effects';

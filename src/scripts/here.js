@@ -8,8 +8,7 @@
 	    var stack = err.stack;
 	    Error.prepareStackTrace = orig;
 	    return stack;}});
-	Object.defineProperty(global,'__line',{
-		get:function(){return '(line '+__stack[1].getLineNumber()+')'}});
+	Object.defineProperty(global,'__line',{get:function(){return '(line '+__stack[1].getLineNumber()+')'}});
 	Object.defineProperty(global,'here',{get:function(p){return console.log}});
 	Object.defineProperty(global,'hereE',{get:function(){return console.error}});
 	Object.defineProperty(global,'hereW',{get:function(){return console.warn}});
@@ -17,4 +16,4 @@
 }).call(this,typeof global !== 'undefined'?global:
 typeof self !== 'undefined'?self:
 typeof window !== 'undefined'?window:{});
-here('here is working on jnaj front end');
+here('here is running on JNAJ');

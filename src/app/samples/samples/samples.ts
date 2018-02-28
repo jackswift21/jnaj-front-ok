@@ -11,7 +11,7 @@ declare const here:any;
 })
 
 export class Samples {
-	query;
+	/*query;
 	samples;
 	constructor(
 		private route:ActivatedRoute,
@@ -19,5 +19,5 @@ export class Samples {
 	ngOnInit(){
 		this.route.queryParamMap.subscribe(params => this.query = {...params});//here(this.query);});
 		this._samples.current.subscribe(samples => this.samples = samples);
-		here(this.samples);}
+		here(this.samples);}*/
 }

@@ -1,10 +1,10 @@
 <!-- Search Results -->
 <div class="w3-half">
 <div class="w3-container w3-row w3-center w3-dark-grey w3-padding-64">
-<div class="w3-third"><a [routerLink]='["/profiles"]' [queryParams]="{'q':newSearch.query}">
-	<span class="w3-xxlarge">{{newSearch.results.profiles.length}}</span><br>Developers</a></div>
-<div class="w3-third"><a [routerLink]='["/samples"]' [queryParams]="{'q':newSearch.query}">
-	<span class="w3-xxlarge">{{newSearch.results.samples.length}}</span><br>Samples</a></div>
-<div class="w3-third"><a [routerLink]='["/articles"]' [queryParams]="{'q':newSearch.query}">
-	<span class="w3-xxlarge">{{newSearch.results.articles.length}}</span><br>Articles</a></div>
+<div class="w3-third"><a [routerLink]='["/profiles"]' [queryParams]="{'q':query}">
+	<span class="w3-xxlarge">{{results.length}}</span><br>Developers</a></div>
+<div class="w3-third"><a [routerLink]='["/samples"]' [queryParams]="{'q':query}">
+	<span class="w3-xxlarge">{{results.length}}</span><br>Samples</a></div>
+<div class="w3-third"><a [routerLink]='["/articles"]' [queryParams]="{'q':query}">
+	<span class="w3-xxlarge">{{results.length}}</span><br>Articles</a></div>
 </div></div>

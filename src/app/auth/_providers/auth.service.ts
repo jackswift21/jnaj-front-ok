@@ -1,13 +1,13 @@
 import {Injectable} from '@angular/core';
 import {Observable,BehaviorSubject,ReplaySubject} from 'rxjs/Rx';
-import {AppState,AppWindowService,ApiService} from '../../_providers';
+//import {AppState,AppWindowService,ApiService} from '../../_providers';
 //import {ProfilesService} from './profiles.service';
 //import {User,Profile} from '../models';
 declare const here:any;
 
 @Injectable()
 export class AuthService {
-  private _isAuth = new ReplaySubject<boolean>(1);
+  /*private _isAuth = new ReplaySubject<boolean>(1);
   public isAuth = this._isAuth.asObservable();
   private _authUser = new BehaviorSubject<any>({});
   public authUser = this._authUser.asObservable();
@@ -65,3 +65,4 @@ export class AuthService {
   locate():Promise<{}>{return this._window.geolocation.then(loc => loc);}
   //.switchMap(loc => this.api.put('/user',{user:Object.assign({},this.me,{loc:loc})})
   save(item){this._window.save(item);}*/
+}

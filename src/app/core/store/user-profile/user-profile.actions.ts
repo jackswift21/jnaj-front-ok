@@ -1,39 +1,39 @@
-/*import { ActionCreatorFactory } from 'ngrx-action-creator-factory';
-import { Injectable } from '@angular/core';
-import { GoogleBasicProfile } from './user-profile.model';
+import {Action} from '@ngrx/store';
+import {GoogleBasicProfile} from './user-profile.model';
 
-@Injectable()
-export class UserProfileActions {
-  static UPDATE = '[UserProfile] UPDATE';
-  static ADD_PLAYLISTS = '[UserProfile] ADD_PLAYLISTS';
-  static UPDATE_TOKEN = '[UserProfile] UPDATE_TOKEN';
-  static LOG_OUT = '[UserProfile] LOG_OUT';
-  static UPDATE_NEXT_PAGE_TOKEN = '[UserProfile] UPDATE_NEXT_PAGE_TOKEN';
-  static USER_PROFILE_COMPLETED = '[UserProfile] USER_PROFILE_COMPLETED';
-  static UPDATE_USER_PROFILE = '[UserProfile] UPDATE_USER_PROFILE';
-  static USER_PROFILE_RECIEVED = '[UserProfile] USER_PROFILE_RECIEVED';
-  static VIEWED_PLAYLIST = '[UserProfile] VIEWED_PLAYLIST';
+export const UPDATE = '[UserProfile] UPDATE';
+export const ADD_PLAYLISTS = '[UserProfile] ADD_PLAYLISTS';
+export const UPDATE_TOKEN = '[UserProfile] UPDATE_TOKEN';
+export const LOG_OUT = '[UserProfile] LOG_OUT';
+export const UPDATE_NEXT_PAGE_TOKEN = '[UserProfile] UPDATE_NEXT_PAGE_TOKEN';
+export const USER_PROFILE_COMPLETED = '[UserProfile] USER_PROFILE_COMPLETED';
+export const UPDATE_USER_PROFILE = '[UserProfile] UPDATE_USER_PROFILE';
+export const USER_PROFILE_RECIEVED = '[UserProfile] USER_PROFILE_RECIEVED';
+export const VIEWED_PLAYLIST = '[UserProfile] VIEWED_PLAYLIST';
+export const TEST_USER_PROFILE_ACTION = '[UserProfile] TEST_USER_PROFILE_ACTION';
 
-  setViewPlaylist = ActionCreatorFactory.create<string>(UserProfileActions.VIEWED_PLAYLIST);
-  updateData = (data: any) => ({type: UserProfileActions.UPDATE,payload: data})
-  addPlaylists(playlists: Array<any>) {
-    return {
-      type: UserProfileActions.ADD_PLAYLISTS,
-      payload: playlists};}
-  updateToken = (payload: string) =>({ type: UserProfileActions.UPDATE_TOKEN, payload });
-  signOut() {return {type: UserProfileActions.LOG_OUT};}
-  updatePageToken(token: string) {
-    return {
-      type: UserProfileActions.UPDATE_NEXT_PAGE_TOKEN,
-      payload: token};}
-  userProfileCompleted() {return {type: UserProfileActions.USER_PROFILE_COMPLETED};}
-  userProfileRecieved (profile: any) {
-    return {
-      type: UserProfileActions.USER_PROFILE_RECIEVED,
-      payload: profile};}
-  updateUserProfile (profile: GoogleBasicProfile) {
-    return {
-      type: UserProfileActions.UPDATE_USER_PROFILE,
-      payload: profile};}
-}
-*/
+export class test implements Action {readonly type = TEST_USER_PROFILE_ACTION;}
+export class update implements Action {readonly type = ADD_PLAYLISTS;constructor(public payload:any){}}
+export class setViewPlaylist implements Action {readonly type = VIEWED_PLAYLIST;constructor(public payload:string){}}
+export class updateData implements Action {readonly type = UPDATE;constructor(public payload:any){}}
+export class addPlaylists implements Action {readonly type = ADD_PLAYLISTS;constructor(public payload:any[]){}}
+export class updateToken implements Action {readonly type = UPDATE_TOKEN;constructor(public payload:string){}}
+export class signOut implements Action {readonly type = LOG_OUT;}
+export class updatePageToken implements Action {readonly type = UPDATE_NEXT_PAGE_TOKEN;constructor(public payload:string){}}
+export class userProfileCompleted implements Action {readonly type = USER_PROFILE_COMPLETED;}
+export class userProfileRecieved implements Action {readonly type = USER_PROFILE_RECIEVED;constructor(public payload:any){}}
+export class updateUserProfile implements Action {
+  readonly type = UPDATE_USER_PROFILE;
+  constructor(public payload:GoogleBasicProfile){}}
+
+export type All =
+test|
+setViewPlaylist|
+updateData|
+addPlaylists|
+updateToken|
+signOut|
+updatePageToken|
+userProfileCompleted|
+userProfileRecieved|
+updateUserProfile;

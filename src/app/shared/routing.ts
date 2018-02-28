@@ -31,9 +31,7 @@ import {
 import {
 	ShowIfAuthedDirective,
 	EditingProfileDirective,
-	FetchImageDirective,
-	TypeAhead,
-	TypeAheadSuggestions,} from './directives';
+	FetchImageDirective} from './directives';
 
 export const COMPONENTS = [
 	/*HomeBanner,
@@ -66,8 +64,6 @@ export const COMPONENTS = [
 export const DIRECTIVES = [
 	ShowIfAuthedDirective,
 	EditingProfileDirective,
-	FetchImageDirective,
-	TypeAhead,
-	TypeAheadSuggestions];
+	FetchImageDirective];
 export const PIPES = [];
 export const ROUTING:ModuleWithProviders = RouterModule.forChild([]);

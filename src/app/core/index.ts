@@ -1,29 +1,17 @@
 import {NgModule} from '@angular/core';
-import {StoreModule,combineReducers} from '@ngrx/store';
-import {compose} from '@ngrx/core/compose';
+import {StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
-import {localStorageSync} from 'ngrx-store-localstorage';
-import 'rxjs/add/operator/let';
-import {environment} from '../environments/environment';
-import {JNAJAppState,JNAJReducers,JNAJActions} from './store';
+import {EffectsModule} from '@ngrx/effects';
+import {reducers,metaReducers,EFFECTS} from './store';
 import {SERVICES} from './services';
-import {EFFECTS} from './effects';
-const optionalImports = [];
-const productionReducer = compose(localStorageSync(Object.keys(JNAJReducers)),combineReducers)(JNAJReducers);
-export function appReducer(state:any,action:any){return productionReducer(state,action);}
-if(!environment.production){optionalImports.push(StoreDevtoolsModule.instrumentOnlyWithExtension());}
 
 @NgModule({
   imports:[
-    StoreModule.provideStore(appReducer),
-    ...optionalImports,
-    ...EFFECTS],
-  declarations:[],
-  exports:[],
-  providers:[
-  	...JNAJActions,
-  	...SERVICES]
+    StoreModule.forRoot(reducers,{metaReducers}),
+    StoreDevtoolsModule.instrument({maxAge:10}),
+    EffectsModule.forRoot(EFFECTS)],
+  providers: [...SERVICES],
 })
 
-export class AppStore {};
-export {JNAJAppState} from './store';
+export class CoreModule { }
+export * from './services';

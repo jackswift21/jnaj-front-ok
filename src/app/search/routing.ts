@@ -1,12 +1,13 @@
 import {ModuleWithProviders} from '@angular/core';
 import {RouterModule,Routes} from '@angular/router';
-import {Search} from './search';
+import {SearchPage} from './search';
 import {AdvancedSearch} from './search-adv';
 import {SearchResults} from './search-results';
+import {TypeAhead} from './typeahead';
 
-export const COMPONENTS = [Search,AdvancedSearch,SearchResults];
-export const DIRECTIVES = [];
+export const COMPONENTS = [SearchPage,AdvancedSearch,SearchResults];
+export const DIRECTIVES = [TypeAhead];
 export const PIPES = [];
 
-const routes:Routes = [{path:'',component:Search}];
+const routes:Routes = [{path:'',component:SearchPage}];
 export const ROUTING:ModuleWithProviders = RouterModule.forChild(routes);
