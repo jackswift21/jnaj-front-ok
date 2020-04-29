@@ -39,7 +39,7 @@
     "grunt-contrib-sass": "*",
     "grunt-contrib-watch": "*",
     "hammerjs": "^2.0.8",
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "moment": "^2.20.1",
     "ngrx-store-localstorage": "^5.0.0",
     "rxjs": "^5.5.6",
